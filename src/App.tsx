@@ -15,9 +15,17 @@ import {
   ArrowRight,
   Github,
   Star,
-  Download
+  Download,
+  Camera
 } from 'lucide-react';
 import './App.css';
+import img0 from './assets/img0.png';
+import img1 from './assets/img1.png';
+import img2 from './assets/img2.png';
+import img3 from './assets/img3.png';
+import img4 from './assets/img4.png';
+import img5 from './assets/img5.png';
+import img6 from './assets/img6.png';
 
 function App() {
   const memoryComponents = [
@@ -153,7 +161,7 @@ function App() {
 
         <div className="relative z-10 text-center max-w-6xl mx-auto">
           <motion.div 
-            className="mb-12"
+            className="mb-8"
             initial={{ opacity: 0, y: 60 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.6, delay: 0.2 }}
@@ -161,7 +169,7 @@ function App() {
             <img 
               src="/logo.png" 
               alt="Mirix Logo" 
-              className="h-24 mx-auto rounded-lg shadow-2xl"
+              className="h-32 mx-auto rounded-lg shadow-2xl"
             />
           </motion.div>
           
@@ -171,17 +179,7 @@ function App() {
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.6, delay: 0.4 }}
           >
-            The World's Most Advanced Memory System for LLM Agents
-          </motion.p>
-          
-          <motion.p 
-            className="text-lg text-gray-400 mb-12 max-w-4xl mx-auto"
-            initial={{ opacity: 0, y: 60 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.6, delay: 0.6 }}
-          >
-            Multi-agent personal assistant with six distinct memory components and eight specialized agents, 
-            transforming raw inputs into a multi-component memory system that adapts to your digital experiences.
+            Builds and Visualizes your Memory
           </motion.p>
           
           <motion.div 
@@ -216,11 +214,70 @@ function App() {
               <span>99% Storage Reduction</span>
             </div>
           </motion.div>
+          
+          {/* Feature Highlight Blocks */}
+          <motion.div 
+            className="mt-20 grid grid-cols-1 md:grid-cols-3 gap-8 max-w-6xl mx-auto"
+            initial={{ opacity: 0, y: 60 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.6, delay: 1.2 }}
+          >
+            {/* Block 1 - Advanced Memory System */}
+            <motion.div 
+              className="relative group"
+              whileHover={{ scale: 1.05 }}
+              transition={{ duration: 0.3 }}
+            >
+              <div className="absolute inset-0 bg-gradient-to-r from-blue-500 to-teal-500 rounded-2xl opacity-0 group-hover:opacity-20 transition-opacity duration-300" />
+              <div className="relative bg-slate-800/50 backdrop-blur-sm border border-gray-700 rounded-2xl p-8 h-full hover:border-teal-500 transition-all duration-300">
+                <div className="inline-flex p-3 rounded-xl bg-gradient-to-r from-blue-500 to-teal-500 text-white mb-6">
+                  <Brain className="w-8 h-8" />
+                </div>
+                <h3 className="text-2xl font-bold text-white mb-4">The World's Most Advanced Memory System for LLM Agents</h3>
+                <p className="text-gray-400 leading-relaxed">Built specifically for LLM agents with cutting-edge memory architecture that outperforms all existing solutions</p>
+              </div>
+            </motion.div>
+            
+            {/* Block 2 - Personal Private Memory */}
+            <motion.div 
+              className="relative group"
+              whileHover={{ scale: 1.05 }}
+              transition={{ duration: 0.3 }}
+            >
+              <div className="absolute inset-0 bg-gradient-to-r from-purple-500 to-pink-500 rounded-2xl opacity-0 group-hover:opacity-20 transition-opacity duration-300" />
+              <div className="relative bg-slate-800/50 backdrop-blur-sm border border-gray-700 rounded-2xl p-8 h-full hover:border-purple-500 transition-all duration-300">
+                <div className="inline-flex p-3 rounded-xl bg-gradient-to-r from-purple-500 to-pink-500 text-white mb-6">
+                  <Lock className="w-8 h-8" />
+                </div>
+                <h3 className="text-2xl font-bold text-white mb-4">Your Own Personal Private Memory</h3>
+                <p className="text-gray-400 leading-relaxed">Builds visualizable and structured memory that belongs entirely to you - completely private and secure</p>
+              </div>
+            </motion.div>
+            
+            {/* Block 3 - Token Trading */}
+            <motion.div 
+              className="relative group"
+              whileHover={{ scale: 1.05 }}
+              transition={{ duration: 0.3 }}
+            >
+              <div className="absolute inset-0 bg-gradient-to-r from-yellow-500 to-orange-500 rounded-2xl opacity-0 group-hover:opacity-20 transition-opacity duration-300" />
+              <div className="relative bg-slate-800/50 backdrop-blur-sm border border-gray-700 rounded-2xl p-8 h-full hover:border-yellow-500 transition-all duration-300">
+                <div className="inline-flex p-3 rounded-xl bg-gradient-to-r from-yellow-500 to-orange-500 text-white mb-6">
+                  <Zap className="w-8 h-8" />
+                </div>
+                <h3 className="text-2xl font-bold text-white mb-4">Trade & Upload Memory for Tokens</h3>
+                <p className="text-gray-400 leading-relaxed">
+                  Monetize your unique memory data by trading and uploading to earn tokens
+                  <span className="block mt-2 text-yellow-400 font-semibold text-sm">🚀 Upcoming Functionality</span>
+                </p>
+              </div>
+            </motion.div>
+          </motion.div>
         </div>
       </section>
 
-      {/* Memory Components Section */}
-      <section className="py-24 px-4">
+      {/* How It Works Section */}
+      <section className="py-24 px-4 bg-slate-800/10">
         <div className="max-w-7xl mx-auto">
           <motion.div 
             className="text-center mb-16"
@@ -229,38 +286,134 @@ function App() {
             viewport={{ once: true }}
             transition={{ duration: 0.6 }}
           >
-            <h2 className="text-5xl font-bold text-white mb-6">Six Memory Components</h2>
+            <h2 className="text-5xl font-bold text-white mb-6">How It Works</h2>
             <p className="text-xl text-gray-400 max-w-3xl mx-auto">
-              Mirix leverages a sophisticated multi-layered memory architecture that processes and organizes information intelligently
+              Mirix automatically takes screenshots and builds a personal memory that is visualizable and only belongs to you. 
+              This memory is equipped with an intelligent agent that knows everything about you and your digital activities.
             </p>
           </motion.div>
           
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
-            {memoryComponents.map((component, index) => (
+          <div className="relative max-w-6xl mx-auto">
+            {/* Background container for the overlapping images */}
+            <div className="relative h-[600px] md:h-[700px] lg:h-[800px] overflow-hidden rounded-3xl">
+              {/* Image 1 - Bottom layer */}
               <motion.div
-                key={component.name}
-                className="relative group"
-                initial={{ opacity: 0, y: 60 }}
-                whileInView={{ opacity: 1, y: 0 }}
+                className="absolute top-8 left-4 md:left-8 lg:left-12 w-[280px] md:w-[350px] lg:w-[400px] z-10"
+                initial={{ opacity: 0, x: -100, rotate: -5 }}
+                whileInView={{ opacity: 1, x: 0, rotate: -3 }}
                 viewport={{ once: true }}
-                transition={{ duration: 0.6, delay: index * 0.1 }}
-                whileHover={{ scale: 1.05 }}
+                transition={{ duration: 0.8, delay: 0.2 }}
+                whileHover={{ scale: 1.05, rotate: 0, zIndex: 50 }}
               >
-                <div className={`absolute inset-0 bg-gradient-to-r ${component.color} rounded-2xl opacity-0 group-hover:opacity-20 transition-opacity duration-300`} />
-                <div className="relative bg-slate-800/50 backdrop-blur-sm border border-gray-700 rounded-2xl p-8 h-full hover:border-gray-600 transition-all duration-300">
-                  <div className={`inline-flex p-3 rounded-xl bg-gradient-to-r ${component.color} text-white mb-6`}>
-                    {component.icon}
-                  </div>
-                  <h3 className="text-2xl font-bold text-white mb-4">{component.name}</h3>
-                  <p className="text-gray-400 leading-relaxed">{component.description}</p>
-                </div>
+                <img 
+                  src={img1} 
+                  alt="Mirix Chat Interface" 
+                  className="w-full h-auto rounded-2xl shadow-2xl border border-gray-600 hover:shadow-teal-500/20 transition-all duration-300"
+                />
               </motion.div>
-            ))}
+              
+              {/* Image 2 - Second layer */}
+              <motion.div
+                className="absolute top-12 md:top-16 right-4 md:right-8 lg:right-12 w-[280px] md:w-[350px] lg:w-[400px] z-20"
+                initial={{ opacity: 0, x: 100, rotate: 5 }}
+                whileInView={{ opacity: 1, x: 0, rotate: 3 }}
+                viewport={{ once: true }}
+                transition={{ duration: 0.8, delay: 0.4 }}
+                whileHover={{ scale: 1.05, rotate: 0, zIndex: 50 }}
+              >
+                <img 
+                  src={img2} 
+                  alt="Mirix Code Integration" 
+                  className="w-full h-auto rounded-2xl shadow-2xl border border-gray-600 hover:shadow-blue-500/20 transition-all duration-300"
+                />
+              </motion.div>
+              
+              {/* Image 3 - Third layer */}
+              <motion.div
+                className="absolute bottom-24 md:bottom-20 left-8 md:left-16 lg:left-20 w-[280px] md:w-[350px] lg:w-[400px] z-30"
+                initial={{ opacity: 0, y: 100, rotate: -3 }}
+                whileInView={{ opacity: 1, y: 0, rotate: -2 }}
+                viewport={{ once: true }}
+                transition={{ duration: 0.8, delay: 0.6 }}
+                whileHover={{ scale: 1.05, rotate: 0, zIndex: 50 }}
+              >
+                <img 
+                  src={img3} 
+                  alt="Mirix Browser Integration" 
+                  className="w-full h-auto rounded-2xl shadow-2xl border border-gray-600 hover:shadow-purple-500/20 transition-all duration-300"
+                />
+              </motion.div>
+              
+              {/* Image 4 - Top layer */}
+              <motion.div
+                className="absolute bottom-16 md:bottom-12 right-8 md:right-16 lg:right-20 w-[280px] md:w-[350px] lg:w-[400px] z-40"
+                initial={{ opacity: 0, y: 100, rotate: 4 }}
+                whileInView={{ opacity: 1, y: 0, rotate: 2 }}
+                viewport={{ once: true }}
+                transition={{ duration: 0.8, delay: 0.8 }}
+                whileHover={{ scale: 1.05, rotate: 0, zIndex: 50 }}
+              >
+                <img 
+                  src={img4} 
+                  alt="Mirix Terminal Integration" 
+                  className="w-full h-auto rounded-2xl shadow-2xl border border-gray-600 hover:shadow-green-500/20 transition-all duration-300"
+                />
+              </motion.div>
+              
+              {/* Image 0 - Central focal point */}
+              <motion.div
+                className="absolute top-[25%] left-1/3 transform -translate-x-1/2 -translate-y-1/2 w-[300px] md:w-[380px] lg:w-[450px] z-50"
+                initial={{ opacity: 0, scale: 0.8, rotate: 1 }}
+                whileInView={{ opacity: 1, scale: 1, rotate: 0 }}
+                viewport={{ once: true }}
+                transition={{ duration: 0.8, delay: 1.0 }}
+                whileHover={{ scale: 1.08, rotate: 0, zIndex: 60 }}
+              >
+                <img 
+                  src={img0} 
+                  alt="Mirix Main Interface" 
+                  className="w-full h-auto rounded-2xl shadow-2xl border border-gray-600 hover:shadow-yellow-500/20 transition-all duration-300"
+                />
+              </motion.div>
+            </div>
+            
+            {/* Feature highlights */}
+            <motion.div 
+              className="mt-16 grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6"
+              initial={{ opacity: 0, y: 60 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true }}
+              transition={{ duration: 0.6, delay: 1.0 }}
+            >
+              <div className="text-center p-6 bg-slate-800/30 rounded-xl border border-gray-700">
+                <Camera className="w-8 h-8 text-teal-400 mx-auto mb-4" />
+                <h3 className="text-lg font-bold text-white mb-2">Automatic Screenshots</h3>
+                <p className="text-gray-400 text-sm">Continuously captures your screen activity to build comprehensive visual memory</p>
+              </div>
+              
+              <div className="text-center p-6 bg-slate-800/30 rounded-xl border border-gray-700">
+                <Lock className="w-8 h-8 text-blue-400 mx-auto mb-4" />
+                <h3 className="text-lg font-bold text-white mb-2">Private Memory</h3>
+                <p className="text-gray-400 text-sm">Your personal memory belongs only to you - visualizable and completely private</p>
+              </div>
+              
+              <div className="text-center p-6 bg-slate-800/30 rounded-xl border border-gray-700">
+                <Brain className="w-8 h-8 text-purple-400 mx-auto mb-4" />
+                <h3 className="text-lg font-bold text-white mb-2">Intelligent Agent</h3>
+                <p className="text-gray-400 text-sm">AI agent deeply integrated with your memory, understanding your complete digital life</p>
+              </div>
+              
+              <div className="text-center p-6 bg-slate-800/30 rounded-xl border border-gray-700">
+                <MessageCircle className="w-8 h-8 text-green-400 mx-auto mb-4" />
+                <h3 className="text-lg font-bold text-white mb-2">Knows Everything</h3>
+                <p className="text-gray-400 text-sm">Chat with an assistant that remembers all your activities and preferences</p>
+              </div>
+            </motion.div>
           </div>
         </div>
       </section>
 
-      {/* Multi-Agent System */}
+      {/* Use Cases Section */}
       <section className="py-24 px-4 bg-slate-800/20">
         <div className="max-w-7xl mx-auto">
           <motion.div 
@@ -270,72 +423,160 @@ function App() {
             viewport={{ once: true }}
             transition={{ duration: 0.6 }}
           >
-            <h2 className="text-5xl font-bold text-white mb-6">Multi-Agent Architecture</h2>
+            <h2 className="text-5xl font-bold text-white mb-6">Use Cases</h2>
             <p className="text-xl text-gray-400 max-w-3xl mx-auto">
-              Eight specialized agents working collaboratively to process, store, and retrieve information efficiently
+              See how Mirix transforms everyday interactions with intelligent memory-powered assistance
             </p>
           </motion.div>
           
-          <div className="grid grid-cols-1 lg:grid-cols-3 gap-8 mb-16">
-            {agents.map((agent, index) => (
-              <motion.div
-                key={agent.name}
-                className="bg-slate-800/50 backdrop-blur-sm border border-gray-700 rounded-2xl p-8 text-center"
-                initial={{ opacity: 0, y: 60 }}
-                whileInView={{ opacity: 1, y: 0 }}
-                viewport={{ once: true }}
-                transition={{ duration: 0.6, delay: index * 0.2 }}
-                whileHover={{ scale: 1.05 }}
-              >
-                <div className="w-16 h-16 bg-gradient-to-r from-blue-500 to-teal-500 rounded-full flex items-center justify-center mx-auto mb-6">
-                  <Users className="w-8 h-8 text-white" />
+          <div className="space-y-16">
+            {/* Use Case 1 - Yesterday Activities */}
+            <motion.div 
+              className="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center"
+              initial={{ opacity: 0, y: 60 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true }}
+              transition={{ duration: 0.6, delay: 0.2 }}
+            >
+              <div className="lg:order-1">
+                <div className="inline-flex items-center gap-2 mb-6">
+                  <div className="w-3 h-3 bg-teal-500 rounded-full"></div>
+                  <span className="text-teal-400 font-semibold text-sm">DAILY RECALL</span>
                 </div>
-                <h3 className="text-2xl font-bold text-white mb-2">{agent.name}</h3>
-                                  <p className="text-sm text-teal-400 mb-4 font-semibold">{agent.role}</p>
-                <p className="text-gray-400">{agent.description}</p>
-              </motion.div>
-            ))}
+                <h3 className="text-3xl font-bold text-white mb-6">"Tell me what I did yesterday"</h3>
+                <p className="text-lg text-gray-400 mb-6 leading-relaxed">
+                  Mirix automatically captures and organizes your daily activities, allowing you to easily recall 
+                  what you worked on, websites you visited, and conversations you had - all with natural language queries.
+                </p>
+                <div className="flex flex-wrap gap-3">
+                  <span className="px-4 py-2 bg-teal-500/20 text-teal-300 rounded-full text-sm">
+                    ⏰ Time-based queries
+                  </span>
+                  <span className="px-4 py-2 bg-blue-500/20 text-blue-300 rounded-full text-sm">
+                    📱 Activity tracking
+                  </span>
+                  <span className="px-4 py-2 bg-purple-500/20 text-purple-300 rounded-full text-sm">
+                    🔍 Advanced search
+                  </span>
+                </div>
+              </div>
+              
+              <div className="lg:order-2">
+                <motion.div
+                  whileHover={{ scale: 1.05 }}
+                  transition={{ duration: 0.3 }}
+                >
+                  <img 
+                    src={img5} 
+                    alt="Daily Activity Recall Interface" 
+                    className="w-full h-auto rounded-2xl shadow-2xl border border-gray-600"
+                  />
+                </motion.div>
+              </div>
+            </motion.div>
+            
+            {/* Use Case 2 - Cover Letter */}
+            <motion.div 
+              className="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center"
+              initial={{ opacity: 0, y: 60 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true }}
+              transition={{ duration: 0.6, delay: 0.4 }}
+            >
+              <div className="lg:order-2">
+                <div className="inline-flex items-center gap-2 mb-6">
+                  <div className="w-3 h-3 bg-blue-500 rounded-full"></div>
+                  <span className="text-blue-400 font-semibold text-sm">CAREER ASSISTANCE</span>
+                </div>
+                <h3 className="text-3xl font-bold text-white mb-6">"Help me write a cover letter for Meta Research Scientist Application"</h3>
+                <p className="text-lg text-gray-400 mb-6 leading-relaxed">
+                  Leveraging your complete work history, skills, and experiences stored in memory, Mirix crafts 
+                  personalized, compelling cover letters that highlight your most relevant qualifications.
+                </p>
+                <div className="flex flex-wrap gap-3">
+                  <span className="px-4 py-2 bg-blue-500/20 text-blue-300 rounded-full text-sm">
+                    📝 Personalized writing
+                  </span>
+                  <span className="px-4 py-2 bg-green-500/20 text-green-300 rounded-full text-sm">
+                    💼 Career context
+                  </span>
+                  <span className="px-4 py-2 bg-purple-500/20 text-purple-300 rounded-full text-sm">
+                    🎯 Targeted content
+                  </span>
+                </div>
+              </div>
+              
+              <div className="lg:order-1">
+                <motion.div
+                  whileHover={{ scale: 1.05 }}
+                  transition={{ duration: 0.3 }}
+                >
+                  <img 
+                    src={img6} 
+                    alt="Cover Letter Writing Interface" 
+                    className="w-full h-auto rounded-2xl shadow-2xl border border-gray-600"
+                  />
+                </motion.div>
+              </div>
+            </motion.div>
+            
+            {/* Use Case 3 - Future Devices */}
+            <motion.div 
+              className="text-center"
+              initial={{ opacity: 0, y: 60 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true }}
+              transition={{ duration: 0.6, delay: 0.6 }}
+            >
+              <div className="inline-flex items-center gap-2 mb-6">
+                <div className="w-3 h-3 bg-yellow-500 rounded-full"></div>
+                <span className="text-yellow-400 font-semibold text-sm">UPCOMING FUNCTIONALITY</span>
+              </div>
+              <h3 className="text-3xl font-bold text-white mb-6">AI Pins, Wearable Devices, & Robots</h3>
+              <p className="text-lg text-gray-400 mb-12 max-w-4xl mx-auto leading-relaxed">
+                The future of AI-powered devices with MIRIX memory system as the backend. Imagine AI pins that remember 
+                your conversations, wearable devices that understand your habits, and robots that learn from your daily routines.
+              </p>
+              
+              <div className="grid grid-cols-1 md:grid-cols-3 gap-8 max-w-4xl mx-auto">
+                <motion.div 
+                  className="bg-slate-800/30 rounded-2xl p-8 border border-gray-700"
+                  whileHover={{ scale: 1.05 }}
+                  transition={{ duration: 0.3 }}
+                >
+                  <div className="w-16 h-16 bg-gradient-to-r from-yellow-500 to-orange-500 rounded-full flex items-center justify-center mx-auto mb-6">
+                    <Zap className="w-8 h-8 text-white" />
+                  </div>
+                  <h4 className="text-xl font-bold text-white mb-4">AI Pins</h4>
+                  <p className="text-gray-400 text-sm">Smart wearable pins that remember your experiences and help you memorize.</p>
+                </motion.div>
+                
+                <motion.div 
+                  className="bg-slate-800/30 rounded-2xl p-8 border border-gray-700"
+                  whileHover={{ scale: 1.05 }}
+                  transition={{ duration: 0.3 }}
+                >
+                  <div className="w-16 h-16 bg-gradient-to-r from-green-500 to-teal-500 rounded-full flex items-center justify-center mx-auto mb-6">
+                    <Clock className="w-8 h-8 text-white" />
+                  </div>
+                  <h4 className="text-xl font-bold text-white mb-4">Wearable Devices</h4>
+                  <p className="text-gray-400 text-sm">AI glasses, AI companions that can see what you see, becoming your real-world personal assistants.</p>
+                </motion.div>
+                
+                <motion.div 
+                  className="bg-slate-800/30 rounded-2xl p-8 border border-gray-700"
+                  whileHover={{ scale: 1.05 }}
+                  transition={{ duration: 0.3 }}
+                >
+                  <div className="w-16 h-16 bg-gradient-to-r from-purple-500 to-pink-500 rounded-full flex items-center justify-center mx-auto mb-6">
+                    <Settings className="w-8 h-8 text-white" />
+                  </div>
+                  <h4 className="text-xl font-bold text-white mb-4">Smart Robots</h4>
+                  <p className="text-gray-400 text-sm">Household and service robots that can live in the society</p>
+                </motion.div>
+              </div>
+            </motion.div>
           </div>
-          
-          {/* Workflow Diagram */}
-          <motion.div 
-            className="bg-slate-800/30 rounded-2xl p-8 border border-gray-700"
-            initial={{ opacity: 0, y: 60 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true }}
-            transition={{ duration: 0.6 }}
-          >
-            <h3 className="text-3xl font-bold text-white mb-8 text-center">Intelligent Workflow</h3>
-            <div className="flex flex-col lg:flex-row items-center justify-between gap-8">
-              <div className="flex-1 text-center">
-                <div className="w-20 h-20 bg-gradient-to-r from-green-500 to-blue-500 rounded-full flex items-center justify-center mx-auto mb-4">
-                  <MessageCircle className="w-10 h-10 text-white" />
-                </div>
-                <h4 className="text-xl font-bold text-white mb-2">Input Processing</h4>
-                <p className="text-gray-400">User Input → Meta Agent → Memory Managers</p>
-              </div>
-              
-              <ArrowRight className="w-8 h-8 text-teal-400 rotate-90 lg:rotate-0" />
-              
-              <div className="flex-1 text-center">
-                <div className="w-20 h-20 bg-gradient-to-r from-teal-500 to-blue-500 rounded-full flex items-center justify-center mx-auto mb-4">
-                  <Database className="w-10 h-10 text-white" />
-                </div>
-                <h4 className="text-xl font-bold text-white mb-2">Memory Consolidation</h4>
-                <p className="text-gray-400">Intelligent routing and batch processing</p>
-              </div>
-              
-              <ArrowRight className="w-8 h-8 text-teal-400 rotate-90 lg:rotate-0" />
-              
-              <div className="flex-1 text-center">
-                <div className="w-20 h-20 bg-gradient-to-r from-blue-600 to-indigo-600 rounded-full flex items-center justify-center mx-auto mb-4">
-                  <Search className="w-10 h-10 text-white" />
-                </div>
-                <h4 className="text-xl font-bold text-white mb-2">Retrieval System</h4>
-                <p className="text-gray-400">Chat Agent → search_memory() → Response</p>
-              </div>
-            </div>
-          </motion.div>
         </div>
       </section>
 
