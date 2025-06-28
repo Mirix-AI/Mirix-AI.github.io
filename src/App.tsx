@@ -2,9 +2,7 @@ import React from 'react';
 import { motion } from 'framer-motion';
 import { 
   Brain, 
-  Users, 
   Database, 
-  Search, 
   Lock, 
   Zap,
   Clock,
@@ -28,62 +26,6 @@ import img5 from './assets/img5.png';
 import img6 from './assets/img6.png';
 
 function App() {
-  const memoryComponents = [
-    {
-      name: "Core Memory",
-      icon: <Brain className="w-8 h-8" />,
-      description: "Persistent information always visible to the agent, including persona and user understanding",
-      color: "from-blue-500 to-teal-500"
-    },
-    {
-      name: "Episodic Memory", 
-      icon: <Clock className="w-8 h-8" />,
-      description: "Context-specific events and temporal activities, serving as a behavioral calendar",
-      color: "from-cyan-500 to-blue-500"
-    },
-    {
-      name: "Semantic Memory",
-      icon: <Database className="w-8 h-8" />,
-      description: "General knowledge and concepts independent of temporal context",
-      color: "from-teal-500 to-cyan-500"
-    },
-    {
-      name: "Procedural Memory",
-      icon: <Settings className="w-8 h-8" />,
-      description: "Process workflows and step-by-step instructions for accomplishing tasks",
-      color: "from-blue-600 to-indigo-600"
-    },
-    {
-      name: "Resource Memory",
-      icon: <FileText className="w-8 h-8" />,
-      description: "Active documents and project-related files the user interacts with",
-      color: "from-indigo-500 to-blue-500"
-    },
-    {
-      name: "Knowledge Vault",
-      icon: <Lock className="w-8 h-8" />,
-      description: "Securely stores structured personal data like addresses, contacts, and credentials",
-      color: "from-teal-600 to-blue-600"
-    }
-  ];
-
-  const agents = [
-    {
-      name: "Meta Agent",
-      role: "Coordinator",
-      description: "Coordinates and updates various memory agents"
-    },
-    {
-      name: "Chat Agent", 
-      role: "Interface",
-      description: "Engages in natural language conversations with users"
-    },
-    {
-      name: "Memory Managers",
-      role: "Storage",
-      description: "Six specialized agents managing memory components"
-    }
-  ];
 
   const benchmarks = [
     // GPT-4o-mini models
