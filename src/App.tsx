@@ -134,7 +134,7 @@ function App() {
   return (
     <div className="min-h-screen bg-gradient-to-br from-gray-950 via-slate-950 to-black">
       {/* Hero Section */}
-      <section className="relative min-h-screen flex items-center justify-center px-4 overflow-hidden">
+      <section className="relative min-h-screen flex items-center justify-center px-4 pt-20 overflow-hidden">
         {/* Background Animation */}
         <div className="absolute inset-0 opacity-20">
           {[...Array(30)].map((_, i) => (
@@ -188,11 +188,11 @@ function App() {
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.6, delay: 0.8 }}
           >
-            <button className="bg-gradient-to-r from-blue-600 to-teal-600 hover:from-blue-700 hover:to-teal-700 text-white px-8 py-4 rounded-full font-semibold text-lg transition-all duration-300 flex items-center gap-2 shadow-2xl hover:shadow-teal-500/25">
+            <a href="https://docs.mirix.io/" target="_blank" rel="noopener noreferrer" className="bg-gradient-to-r from-blue-600 to-teal-600 hover:from-blue-700 hover:to-teal-700 text-white px-8 py-4 rounded-full font-semibold text-lg transition-all duration-300 flex items-center gap-2 shadow-2xl hover:shadow-teal-500/25">
               <Download className="w-5 h-5" />
               Get Started
               <ArrowRight className="w-5 h-5" />
-            </button>
+            </a>
             <a href="https://github.com/Mirix-AI/MIRIX" target="_blank" rel="noopener noreferrer" className="border-2 border-teal-400 text-teal-400 hover:bg-teal-400 hover:text-white px-8 py-4 rounded-full font-semibold text-lg transition-all duration-300 flex items-center gap-2">
               <Github className="w-5 h-5" />
               View on GitHub
@@ -265,9 +265,9 @@ function App() {
                 <div className="inline-flex p-3 rounded-xl bg-gradient-to-r from-yellow-500 to-orange-500 text-white mb-6">
                   <Zap className="w-8 h-8" />
                 </div>
-                <h3 className="text-2xl font-bold text-white mb-4">Trade & Upload Memory for Tokens</h3>
+                <h3 className="text-2xl font-bold text-white mb-4">DePIN Memory Collection and Marketplace</h3>
                 <p className="text-gray-400 leading-relaxed">
-                  Monetize your unique memory data by trading and uploading to earn tokens
+                  Build community by sharing your experience, and monetize through memory exchange
                   <span className="block mt-2 text-yellow-400 font-semibold text-sm">🚀 Upcoming Functionality</span>
                 </p>
               </div>
@@ -1007,64 +1007,7 @@ function App() {
         </div>
       </section>
 
-      {/* Installation Section */}
-      <section className="py-24 px-4">
-        <div className="max-w-4xl mx-auto">
-          <motion.div 
-            className="text-center mb-16"
-            initial={{ opacity: 0, y: 60 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true }}
-            transition={{ duration: 0.6 }}
-          >
-            <h2 className="text-5xl font-bold text-white mb-6">Get Started</h2>
-            <p className="text-xl text-gray-400">
-              Easy setup with PostgreSQL for optimal performance, or SQLite for quick testing
-            </p>
-          </motion.div>
-          
-          <motion.div 
-            className="bg-slate-800/30 rounded-2xl p-8 border border-gray-700"
-            initial={{ opacity: 0, y: 60 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true }}
-            transition={{ duration: 0.6 }}
-          >
-            <div className="space-y-6">
-              <div>
-                <h3 className="text-xl font-bold text-white mb-4">1. Clone Repository</h3>
-                <div className="bg-slate-900/50 rounded-lg p-4 font-mono text-green-400 border border-gray-700">
-                  git clone https://github.com/Mirix-AI/Mirix.git<br />
-                  cd Mirix
-                </div>
-              </div>
-              
-              <div>
-                <h3 className="text-xl font-bold text-white mb-4">2. Configure Environment</h3>
-                <div className="bg-slate-900/50 rounded-lg p-4 font-mono text-green-400 border border-gray-700">
-                  # Create .env file<br />
-                  GEMINI_API_KEY=your_api_key_here<br />
-                  MIRIX_PG_URI=postgresql+pg8000://username@localhost:5432/mirix
-                </div>
-              </div>
-              
-              <div>
-                <h3 className="text-xl font-bold text-white mb-4">3. Install Dependencies</h3>
-                <div className="bg-slate-900/50 rounded-lg p-4 font-mono text-green-400 border border-gray-700">
-                  pip install -r requirements.txt
-                </div>
-              </div>
-              
-              <div>
-                <h3 className="text-xl font-bold text-white mb-4">4. Start Mirix</h3>
-                <div className="bg-slate-900/50 rounded-lg p-4 font-mono text-green-400 border border-gray-700">
-                  python main.py
-                </div>
-              </div>
-            </div>
-          </motion.div>
-        </div>
-      </section>
+
 
       {/* Footer */}
       <footer className="py-12 px-4 border-t border-gray-800">
