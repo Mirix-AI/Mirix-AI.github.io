@@ -7,7 +7,6 @@ import {
   Zap,
   Clock,
   MessageCircle,
-  FileText,
   Settings,
   CheckCircle,
   ArrowRight,
