@@ -65,9 +65,9 @@ function App() {
     { 
       model: "MIRIX", 
       student1Acc: "0.5455", student1Storage: "20.57MB",
-      student2Acc: "0.5667", student2Storage: "89.83MB", 
-      student3Acc: "0.6727", student3Storage: "47.28MB",
-      overallAcc: "0.5950", overallStorage: "52.56MB",
+      student2Acc: "0.5667", student2Storage: "19.83MB", 
+      student3Acc: "0.6727", student3Storage: "7.28MB",
+      overallAcc: "0.5950", overallStorage: "15.89MB",
       highlight: true
     }
   ];
@@ -152,7 +152,7 @@ function App() {
             </div>
             <div className="flex items-center gap-2">
               <Database className="w-5 h-5 text-blue-400" />
-              <span>99% Storage Reduction</span>
+              <span>99.9% Storage Reduction</span>
             </div>
           </motion.div>
           
@@ -461,13 +461,58 @@ function App() {
               </div>
             </motion.div>
             
-            {/* Use Case 3 - Future Devices */}
+            {/* Use Case 3 - Memory Tree Visualization */}
+            <motion.div 
+              className="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center"
+              initial={{ opacity: 0, y: 60 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true }}
+              transition={{ duration: 0.6, delay: 0.6 }}
+            >
+              <div className="lg:order-1">
+                <div className="inline-flex items-center gap-2 mb-6">
+                  <div className="w-3 h-3 bg-purple-500 rounded-full"></div>
+                  <span className="text-purple-400 font-semibold text-sm">MEMORY VISUALIZATION</span>
+                </div>
+                <h3 className="text-3xl font-bold text-white mb-6">Visualize your memory in tree structure</h3>
+                <p className="text-lg text-gray-400 mb-6 leading-relaxed">
+                  Explore and navigate your personal memory through an intuitive tree structure visualization. 
+                  See how your experiences, knowledge, and activities are interconnected in a beautiful, interactive interface.
+                </p>
+                <div className="flex flex-wrap gap-3">
+                  <span className="px-4 py-2 bg-purple-500/20 text-purple-300 rounded-full text-sm">
+                    🌳 Tree visualization
+                  </span>
+                  <span className="px-4 py-2 bg-green-500/20 text-green-300 rounded-full text-sm">
+                    🔗 Memory connections
+                  </span>
+                  <span className="px-4 py-2 bg-blue-500/20 text-blue-300 rounded-full text-sm">
+                    📊 Interactive interface
+                  </span>
+                </div>
+              </div>
+              
+              <div className="lg:order-2">
+                <motion.div
+                  whileHover={{ scale: 1.05 }}
+                  transition={{ duration: 0.3 }}
+                >
+                  <img 
+                    src={img3} 
+                    alt="Memory Tree Structure Visualization" 
+                    className="w-full h-auto rounded-2xl shadow-2xl border border-gray-600"
+                  />
+                </motion.div>
+              </div>
+            </motion.div>
+            
+            {/* Use Case 4 - Future Devices */}
             <motion.div 
               className="text-center"
               initial={{ opacity: 0, y: 60 }}
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true }}
-              transition={{ duration: 0.6, delay: 0.6 }}
+              transition={{ duration: 0.6, delay: 0.8 }}
             >
               <div className="inline-flex items-center gap-2 mb-6">
                 <div className="w-3 h-3 bg-yellow-500 rounded-full"></div>
@@ -656,10 +701,9 @@ function App() {
                 </div>
                 
                 <div className="bg-slate-800/30 rounded-xl p-6 border border-gray-700">
-                  <h4 className="text-xl font-bold text-white mb-4">Deep Connection between the Memory and the Agent</h4>
+                  <h4 className="text-xl font-bold text-white mb-4">Agent Knows What Is in the Memory</h4>
                   <p className="text-gray-400 mb-4">
-                    Unlike traditional chatbots that rely solely on conversation history, 
-                    MIRIX actively searches its comprehensive memory before every response.
+                    Unlike other memory-based agents where the agent needs explicit instructions like "Search the Memory", MIRIX makes everything automatic and more human-like.
                   </p>
                                       <ul className="space-y-2 text-gray-400">
                       <li className="flex items-center gap-2">
@@ -939,7 +983,7 @@ function App() {
                   <div className="w-2 h-2 bg-blue-400 rounded-full mt-2 flex-shrink-0"></div>
                   <div>
                     <span className="text-blue-400 font-semibold">Storage Efficiency:</span>
-                    <span className="text-gray-300 ml-1">99% reduction vs Storing All Images (52.56MB vs 15.07GB)</span>
+                    <span className="text-gray-300 ml-1">99.9% reduction vs SigLIP@50 (15.89MB vs 15.07GB)</span>
                   </div>
                 </div>
               </div>
