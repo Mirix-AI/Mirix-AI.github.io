@@ -158,7 +158,7 @@ function App() {
           
           {/* Feature Highlight Blocks */}
           <motion.div 
-            className="mt-20 grid grid-cols-1 md:grid-cols-3 gap-8 max-w-6xl mx-auto"
+            className="mt-20 mb-16 grid grid-cols-1 md:grid-cols-3 gap-8 max-w-6xl mx-auto"
             initial={{ opacity: 0, y: 60 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.6, delay: 1.2 }}
@@ -166,7 +166,7 @@ function App() {
             {/* Block 1 - Advanced Memory System */}
             <motion.div 
               className="relative group"
-              whileHover={{ scale: 1.05 }}
+              whileHover={{ scale: 1.05, zIndex: 10 }}
               transition={{ duration: 0.3 }}
             >
               <div className="absolute inset-0 bg-gradient-to-r from-blue-500 to-teal-500 rounded-2xl opacity-0 group-hover:opacity-20 transition-opacity duration-300" />
@@ -182,7 +182,7 @@ function App() {
             {/* Block 2 - Personal Private Memory */}
             <motion.div 
               className="relative group"
-              whileHover={{ scale: 1.05 }}
+              whileHover={{ scale: 1.05, zIndex: 10 }}
               transition={{ duration: 0.3 }}
             >
               <div className="absolute inset-0 bg-gradient-to-r from-purple-500 to-pink-500 rounded-2xl opacity-0 group-hover:opacity-20 transition-opacity duration-300" />
@@ -198,7 +198,7 @@ function App() {
             {/* Block 3 - Token Trading */}
             <motion.div 
               className="relative group"
-              whileHover={{ scale: 1.05 }}
+              whileHover={{ scale: 1.05, zIndex: 10 }}
               transition={{ duration: 0.3 }}
             >
               <div className="absolute inset-0 bg-gradient-to-r from-yellow-500 to-orange-500 rounded-2xl opacity-0 group-hover:opacity-20 transition-opacity duration-300" />
