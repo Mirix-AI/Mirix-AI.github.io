@@ -10,7 +10,6 @@ import {
   Settings,
   CheckCircle,
   ArrowRight,
-  ArrowUpRight,
   Github,
   Star,
   Download,
@@ -108,9 +107,12 @@ function App() {
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.6, delay: 0.2 }}
           >
-            <img 
-              src="/logo.png" 
-              alt="Mirix Logo" 
+            <video 
+              src="/logo.mp4" 
+              autoPlay
+              loop
+              muted
+              playsInline
               className="h-32 mx-auto rounded-lg shadow-2xl"
             />
           </motion.div>
@@ -187,23 +189,18 @@ function App() {
               transition={{ duration: 0.3 }}
             >
               <div className="absolute inset-0 bg-gradient-to-r from-purple-500 to-pink-500 rounded-2xl opacity-0 group-hover:opacity-20 transition-opacity duration-300" />
-              <div className="relative bg-slate-800/50 backdrop-blur-sm border border-gray-700 rounded-2xl p-8 h-full hover:border-purple-500 transition-all duration-300">
-                <div className="flex items-center justify-between mb-6">
-                  <div className="inline-flex p-3 rounded-xl bg-gradient-to-r from-purple-500 to-pink-500 text-white">
-                    <Lock className="w-8 h-8" />
-                  </div>
-                  <a 
-                    href="https://docs.mirix.io/advanced/security-privacy/" 
-                    target="_blank" 
-                    rel="noopener noreferrer"
-                    className="text-gray-400 hover:text-purple-400 transition-colors"
-                  >
-                    <ArrowUpRight className="w-6 h-6" />
-                  </a>
+              <a 
+                href="https://docs.mirix.io/advanced/security-privacy/" 
+                target="_blank" 
+                rel="noopener noreferrer"
+                className="block relative bg-slate-800/50 backdrop-blur-sm border border-gray-700 rounded-2xl p-8 h-full hover:border-purple-500 transition-all duration-300 cursor-pointer"
+              >
+                <div className="inline-flex p-3 rounded-xl bg-gradient-to-r from-purple-500 to-pink-500 text-white mb-6">
+                  <Lock className="w-8 h-8" />
                 </div>
                 <h3 className="text-2xl font-bold text-white mb-4">Your Own Personal Private Memory</h3>
                 <p className="text-gray-400 leading-relaxed">Builds visualizable and structured memory that belongs entirely to you - completely private and secure</p>
-              </div>
+              </a>
             </motion.div>
             
             {/* Block 3 - Token Trading */}
