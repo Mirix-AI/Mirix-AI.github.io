@@ -225,6 +225,89 @@ function App() {
         </div>
       </section>
 
+      {/* Executive Summary Section */}
+      <section className="py-24 px-4 bg-slate-900/50">
+        <div className="max-w-6xl mx-auto">
+          <motion.div 
+            className="text-center mb-16"
+            initial={{ opacity: 0, y: 60 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true }}
+            transition={{ duration: 0.6 }}
+          >
+            <h2 className="text-5xl font-bold text-white mb-12">Executive Summary</h2>
+            
+            <div className="space-y-8 text-left">
+              {/* First paragraph - What MIRIX can do */}
+              <motion.div 
+                className="text-xl text-gray-300 leading-relaxed"
+                initial={{ opacity: 0, y: 40 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                viewport={{ once: true }}
+                transition={{ duration: 0.6, delay: 0.2 }}
+              >
+                <p>
+                  MIRIX is redefining the future of AI memory, solving the field's most critical challenge: enabling language models to remember. <span className="text-green-400 font-semibold">For the first time, AI agents can have memory that is truly useful in real-world scenarios, transcending text to embrace rich visual and multimodal experiences.</span>
+                </p>
+              </motion.div>
+
+              {/* Second paragraph - Multimodal performance */}
+              <motion.div 
+                className="text-xl text-gray-300 leading-relaxed"
+                initial={{ opacity: 0, y: 40 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                viewport={{ once: true }}
+                transition={{ duration: 0.6, delay: 0.4 }}
+              >
+                <p>
+                  With <span className="text-green-400 font-semibold">multimodal input</span>, MIRIX, as the <span className="text-green-400 font-semibold">ONLY</span> memory system capable of processing massive images, delivers <span className="text-green-400 font-bold text-2xl">35%</span> higher performance than the RAG baseline while reducing storage requirements by <span className="text-green-400 font-bold text-2xl">99.9%</span>.
+                </p>
+              </motion.div>
+
+              {/* Third paragraph - Text-only performance */}
+              <motion.div 
+                className="text-xl text-gray-300 leading-relaxed"
+                initial={{ opacity: 0, y: 40 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                viewport={{ once: true }}
+                transition={{ duration: 0.6, delay: 0.6 }}
+              >
+                <p>
+                  Even with only text input, MIRIX shows significantly better performances than competitors, achieving <span className="text-green-400 font-bold text-2xl">85.4%</span> accuracy on memory benchmarks—far surpassing <span className="text-red-400 font-semibold">MemOS (73.3%)</span> and <span className="text-red-400 font-semibold">Mem0 (68.4%)</span>.
+                </p>
+              </motion.div>
+            </div>
+            
+            {/* Key highlights */}
+            <motion.div 
+              className="mt-16 grid grid-cols-1 md:grid-cols-3 gap-8"
+              initial={{ opacity: 0, y: 40 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true }}
+              transition={{ duration: 0.6, delay: 0.8 }}
+            >
+              <div className="bg-slate-800/50 rounded-2xl p-8 border border-green-500/30">
+                <div className="text-4xl font-bold text-green-400 mb-2">First</div>
+                <div className="text-lg text-white font-semibold mb-2">Truly Useful AI Memory</div>
+                <div className="text-gray-400">Real-world scenarios with visual and multimodal experiences</div>
+              </div>
+              
+              <div className="bg-slate-800/50 rounded-2xl p-8 border border-blue-500/30">
+                <div className="text-4xl font-bold text-blue-400 mb-2">World's Only</div>
+                <div className="text-lg text-white font-semibold mb-2">Massive Image Processing</div>
+                <div className="text-gray-400">35% better performance, 99.9% storage reduction</div>
+              </div>
+              
+              <div className="bg-slate-800/50 rounded-2xl p-8 border border-purple-500/30">
+                <div className="text-4xl font-bold text-purple-400 mb-2">85.4%</div>
+                <div className="text-lg text-white font-semibold mb-2">Memory Benchmark Accuracy</div>
+                <div className="text-gray-400">Far surpassing all competitors</div>
+              </div>
+            </motion.div>
+          </motion.div>
+        </div>
+      </section>
+
       {/* How It Works Section */}
       <section className="py-24 px-4 bg-slate-800/10">
         <div className="max-w-7xl mx-auto">
