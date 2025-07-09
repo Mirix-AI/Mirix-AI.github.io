@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState, useEffect } from 'react';
 import { motion } from 'framer-motion';
 import { 
   Brain, 
@@ -25,6 +25,32 @@ import img5 from './assets/img5.png';
 import img6 from './assets/img6.png';
 
 function App() {
+  const [isNavVisible, setIsNavVisible] = useState(true);
+  const [lastScrollY, setLastScrollY] = useState(0);
+  const [isNavHovered, setIsNavHovered] = useState(false);
+
+  // Handle scroll direction
+  useEffect(() => {
+    const handleScroll = () => {
+      const currentScrollY = window.scrollY;
+      
+      // Show navbar when at top of page or when hovered
+      if (currentScrollY < 10 || isNavHovered) {
+        setIsNavVisible(true);
+      } else if (currentScrollY > lastScrollY) {
+        // Scrolling down - hide navbar
+        setIsNavVisible(false);
+      } else {
+        // Scrolling up - show navbar
+        setIsNavVisible(true);
+      }
+      
+      setLastScrollY(currentScrollY);
+    };
+
+    window.addEventListener('scroll', handleScroll, { passive: true });
+    return () => window.removeEventListener('scroll', handleScroll);
+  }, [lastScrollY, isNavHovered]);
 
   const benchmarks = [
     // GPT-4o-mini models
@@ -72,10 +98,104 @@ function App() {
     }
   ];
 
+  // Smooth scroll function
+  const scrollToSection = (sectionId: string) => {
+    const element = document.getElementById(sectionId);
+    if (element) {
+      element.scrollIntoView({ behavior: 'smooth' });
+    }
+  };
+
   return (
     <div className="min-h-screen bg-gradient-to-br from-gray-950 via-slate-950 to-black">
+      {/* Top Navigation Bar */}
+      <nav 
+        className={`fixed top-0 left-0 right-0 z-50 bg-gray-950/90 backdrop-blur-md border-b border-gray-800/50 transition-transform duration-300 ease-in-out ${
+          isNavVisible ? 'translate-y-0' : '-translate-y-full'
+        }`}
+        onMouseEnter={() => setIsNavHovered(true)}
+        onMouseLeave={() => setIsNavHovered(false)}
+      >
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+          <div className="flex items-center justify-between h-16">
+            {/* Logo */}
+            <div className="flex items-center min-w-[180px]">
+              <motion.div
+                className="flex items-center cursor-pointer"
+                whileHover={{ scale: 1.05 }}
+                onClick={() => scrollToSection('hero')}
+              >
+                <img 
+                  src="/logo.png" 
+                  alt="MIRIX Logo"
+                  className="h-8 rounded"
+                />
+              </motion.div>
+            </div>
+
+            {/* Navigation Items */}
+            <div className="hidden md:flex items-center space-x-8">
+              <button
+                onClick={() => scrollToSection('hero')}
+                className="text-gray-300 hover:text-white transition-colors duration-200 text-sm font-medium"
+              >
+                About
+              </button>
+              <button
+                onClick={() => scrollToSection('summary')}
+                className="text-gray-300 hover:text-white transition-colors duration-200 text-sm font-medium"
+              >
+                Summary
+              </button>
+              <button
+                onClick={() => scrollToSection('how-it-works')}
+                className="text-gray-300 hover:text-white transition-colors duration-200 text-sm font-medium"
+              >
+                How it works
+              </button>
+              <button
+                onClick={() => scrollToSection('use-cases')}
+                className="text-gray-300 hover:text-white transition-colors duration-200 text-sm font-medium"
+              >
+                Use Cases
+              </button>
+              <button
+                onClick={() => scrollToSection('benchmarks')}
+                className="text-gray-300 hover:text-white transition-colors duration-200 text-sm font-medium"
+              >
+                Benchmarks
+              </button>
+              <a
+                href="https://github.com/Mirix-AI/MIRIX"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="text-gray-300 hover:text-white transition-colors duration-200 text-sm font-medium"
+              >
+                GitHub
+              </a>
+            </div>
+
+            {/* Download Button */}
+            <div className="flex items-center justify-end min-w-[180px]">
+              <motion.a
+                href="https://github.com/Mirix-AI/MIRIX/releases/download/v0.1.0/MIRIX-0.1.0-arm64.dmg"
+                download="MIRIX-0.1.0-arm64.dmg"
+                className="bg-gray-800 hover:bg-gray-700 border border-gray-700 hover:border-gray-600 text-white px-4 py-2 rounded-lg font-medium text-sm transition-all duration-200 flex items-center gap-2"
+                whileHover={{ scale: 1.05 }}
+                whileTap={{ scale: 0.95 }}
+              >
+                <svg className="w-4 h-4" fill="currentColor" viewBox="0 0 24 24">
+                  <path d="M18.71 19.5c-.83 1.24-1.71 2.45-3.05 2.47-1.34.03-1.77-.79-3.29-.79-1.53 0-2 .77-3.27.82-1.31.05-2.3-1.32-3.14-2.53C4.25 17 2.94 12.45 4.7 9.39c.87-1.52 2.43-2.48 4.12-2.51 1.28-.02 2.5.87 3.29.87.78 0 2.26-1.07 3.81-.91.65.03 2.47.26 3.64 1.98-.09.06-2.17 1.28-2.15 3.81.03 3.02 2.65 4.03 2.68 4.04-.03.07-.42 1.44-1.38 2.83M13 3.5c.73-.83 1.94-1.46 2.94-1.5.13 1.17-.34 2.35-1.04 3.19-.69.85-1.83 1.51-2.95 1.42-.15-1.15.41-2.35 1.05-3.11z"/>
+                </svg>
+                Download for Mac
+              </motion.a>
+            </div>
+          </div>
+        </div>
+      </nav>
+
       {/* Hero Section */}
-      <section className="relative min-h-screen flex items-center justify-center px-4 pt-20 overflow-hidden">
+      <section id="hero" className="relative min-h-screen flex items-center justify-center px-4 pt-32 overflow-hidden">
         {/* Background Animation */}
         <div className="absolute inset-0 opacity-20">
           {[...Array(30)].map((_, i) => (
@@ -226,7 +346,7 @@ function App() {
       </section>
 
       {/* Executive Summary Section */}
-      <section className="py-24 px-4 bg-slate-900/50">
+      <section id="summary" className="py-24 px-4 bg-slate-900/50">
         <div className="max-w-6xl mx-auto">
           <motion.div 
             className="text-center mb-16"
@@ -309,7 +429,7 @@ function App() {
       </section>
 
       {/* How It Works Section */}
-      <section className="py-24 px-4 bg-slate-800/10">
+      <section id="how-it-works" className="py-24 px-4 bg-slate-800/10">
         <div className="max-w-7xl mx-auto">
           <motion.div 
             className="text-center mb-16"
@@ -446,7 +566,7 @@ function App() {
       </section>
 
       {/* Use Cases Section */}
-      <section className="py-24 px-4 bg-slate-800/20">
+      <section id="use-cases" className="py-24 px-4 bg-slate-800/20">
         <div className="max-w-7xl mx-auto">
           <motion.div 
             className="text-center mb-16"
@@ -658,7 +778,7 @@ function App() {
       </section>
 
       {/* Advanced Search Capabilities */}
-      <section className="py-24 px-4">
+      <section id="advanced-search" className="py-24 px-4">
         <div className="max-w-7xl mx-auto">
           <motion.div 
             className="text-center mb-16"
@@ -818,7 +938,7 @@ function App() {
       </section>
 
       {/* Performance Benchmarks */}
-      <section className="py-24 px-4 bg-slate-800/20">
+      <section id="benchmarks" className="py-24 px-4 bg-slate-800/20">
         <div className="max-w-7xl mx-auto">
           <motion.div 
             className="text-center mb-16"
