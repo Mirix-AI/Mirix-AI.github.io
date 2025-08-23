@@ -177,7 +177,7 @@ function App() {
             {/* Download Button */}
             <div className="flex items-center justify-end min-w-[180px]">
               <motion.a
-                href="https://github.com/Mirix-AI/MIRIX/releases/download/v0.1.1/MIRIX-0.1.1-arm64.dmg"
+                href="https://github.com/Mirix-AI/MIRIX/releases/download/v0.1.3/MIRIX-0.1.3-arm64.dmg"
                 download="MIRIX-0.1.0-arm64.dmg"
                 className="bg-gray-800 hover:bg-gray-700 border border-gray-700 hover:border-gray-600 text-white px-4 py-2 rounded-lg font-medium text-sm transition-all duration-200 flex items-center gap-2"
                 whileHover={{ scale: 1.05 }}
