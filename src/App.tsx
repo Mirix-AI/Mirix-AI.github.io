@@ -1,4 +1,5 @@
 import React, { useState, useEffect } from 'react';
+import { Link } from 'react-router-dom';
 import { motion } from 'framer-motion';
 import { 
   Brain, 
@@ -51,51 +52,6 @@ function App() {
     return () => window.removeEventListener('scroll', handleScroll);
   }, [lastScrollY, isNavHovered]);
 
-  const benchmarks = [
-    // GPT-4o-mini models
-    { model: "A-Mem", singleHop: "39.79", multiHop: "18.85", openDomain: "54.05", temporal: "49.91", overall: "48.38", category: "gpt-4o-mini" },
-    { model: "LangMem", singleHop: "62.23", multiHop: "47.92", openDomain: "71.12", temporal: "23.43", overall: "58.10", category: "gpt-4o-mini" },
-    { model: "OpenAI", singleHop: "63.79", multiHop: "42.92", openDomain: "62.29", temporal: "21.71", overall: "52.90", category: "gpt-4o-mini" },
-    { model: "Mem0", singleHop: "67.13", multiHop: "51.15", openDomain: "72.93", temporal: "55.51", overall: "66.88", category: "gpt-4o-mini" },
-    { model: "Mem0ᵍ", singleHop: "65.71", multiHop: "47.19", openDomain: "75.71", temporal: "58.13", overall: "68.44", category: "gpt-4o-mini" },
-    { model: "Memobase", singleHop: "63.83", multiHop: "52.08", openDomain: "71.82", temporal: "80.37", overall: "70.91", category: "gpt-4o-mini" },
-    { model: "Zep", singleHop: "74.11", multiHop: "66.04", openDomain: "67.71", temporal: "79.76", overall: "75.14", category: "gpt-4o-mini" },
-    
-    // GPT-4.1-mini models
-    { model: "LangMem", singleHop: "74.47", multiHop: "61.06", openDomain: "67.71", temporal: "86.92", overall: "78.05", category: "gpt-4.1-mini" },
-    { model: "RAG-500", singleHop: "37.94", multiHop: "37.69", openDomain: "48.96", temporal: "61.83", overall: "51.62", category: "gpt-4.1-mini" },
-    { model: "Zep", singleHop: "79.43", multiHop: "69.16", openDomain: "73.96", temporal: "83.33", overall: "79.09", category: "gpt-4.1-mini" },
-    { model: "Mem0", singleHop: "62.41", multiHop: "57.32", openDomain: "44.79", temporal: "66.47", overall: "62.47", category: "gpt-4.1-mini" },
-    
-    // Mirix models
-    { model: "MIRIX", singleHop: "85.11", multiHop: "83.70", openDomain: "65.62", temporal: "88.39", overall: "85.38", highlight: true, category: "mirix" },
-    { model: "Full-Context", singleHop: "88.53", multiHop: "77.70", openDomain: "71.88", temporal: "92.70", overall: "87.52", category: "upperbound" }
-  ];
-
-  const screenshotVQABenchmarks = [
-    { 
-      model: "Gemini", 
-      student1Acc: "0.0000", student1Storage: "142.10MB",
-      student2Acc: "0.0952", student2Storage: "438.86MB", 
-      student3Acc: "0.2545", student3Storage: "129.14MB",
-      overallAcc: "0.1166", overallStorage: "236.70MB"
-    },
-    { 
-      model: "SigLIP@50", 
-      student1Acc: "0.3636", student1Storage: "22.55GB",
-      student2Acc: "0.4138", student2Storage: "19.88GB", 
-      student3Acc: "0.5455", student3Storage: "2.82GB",
-      overallAcc: "0.4410", overallStorage: "15.07GB"
-    },
-    { 
-      model: "MIRIX", 
-      student1Acc: "0.5455", student1Storage: "20.57MB",
-      student2Acc: "0.5667", student2Storage: "19.83MB", 
-      student3Acc: "0.6727", student3Storage: "7.28MB",
-      overallAcc: "0.5950", overallStorage: "15.89MB",
-      highlight: true
-    }
-  ];
 
   // Smooth scroll function
   const scrollToSection = (sectionId: string) => {
@@ -141,16 +97,16 @@ function App() {
                 About
               </button>
               <button
-                onClick={() => scrollToSection('summary')}
+                onClick={() => scrollToSection('applications')}
                 className="text-gray-300 hover:text-white transition-colors duration-200 text-sm font-medium"
               >
-                Summary
+                Applications
               </button>
               <button
-                onClick={() => scrollToSection('how-it-works')}
+                onClick={() => scrollToSection('desktop-agent')}
                 className="text-gray-300 hover:text-white transition-colors duration-200 text-sm font-medium"
               >
-                How it works
+                Desktop Agent
               </button>
               <button
                 onClick={() => scrollToSection('use-cases')}
@@ -158,12 +114,12 @@ function App() {
               >
                 Use Cases
               </button>
-              <button
-                onClick={() => scrollToSection('benchmarks')}
+              <Link
+                to="/blog"
                 className="text-gray-300 hover:text-white transition-colors duration-200 text-sm font-medium"
               >
-                Benchmarks
-              </button>
+                Blog
+              </Link>
               <a
                 href="https://github.com/Mirix-AI/MIRIX"
                 target="_blank"
@@ -236,20 +192,29 @@ function App() {
             />
           </motion.div>
           
+          <motion.h1 
+            className="text-5xl md:text-6xl font-bold text-white mb-6 leading-tight"
+            initial={{ opacity: 0, y: 60 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.6, delay: 0.3 }}
+          >
+            The World's Most Advanced<br/>Memory System for AI Agents
+          </motion.h1>
+          
           <motion.p 
-            className="text-3xl text-gray-300 mb-8 max-w-3xl mx-auto leading-relaxed font-bold"
+            className="text-xl text-gray-300 mb-12 max-w-3xl mx-auto leading-relaxed"
             initial={{ opacity: 0, y: 60 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.6, delay: 0.4 }}
           >
-            Building Your Personal Assistant with the Most Advanced Memory System
+            With our Python SDK, it can be easily wrapped on your agents
           </motion.p>
           
           <motion.div 
-            className="flex flex-col sm:flex-row gap-4 justify-center items-center"
+            className="flex flex-col sm:flex-row gap-4 justify-center items-center mb-20"
             initial={{ opacity: 0, y: 60 }}
             animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.6, delay: 0.8 }}
+            transition={{ duration: 0.6, delay: 0.6 }}
           >
             <a href="https://docs.mirix.io/" target="_blank" rel="noopener noreferrer" className="bg-gradient-to-r from-blue-600 to-teal-600 hover:from-blue-700 hover:to-teal-700 text-white px-8 py-4 rounded-full font-semibold text-lg transition-all duration-300 flex items-center gap-2 shadow-2xl hover:shadow-teal-500/25">
               <Download className="w-5 h-5" />
@@ -262,30 +227,14 @@ function App() {
             </a>
           </motion.div>
           
+          {/* Three Main Points */}
           <motion.div 
-            className="mt-12 flex flex-col sm:flex-row justify-center items-center gap-8 text-gray-400"
+            className="mt-20 grid grid-cols-1 md:grid-cols-3 gap-8 max-w-6xl mx-auto"
             initial={{ opacity: 0, y: 60 }}
             animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.6, delay: 1.0 }}
+            transition={{ duration: 0.6, delay: 0.8 }}
           >
-            <div className="flex items-center gap-2 text-center sm:text-left">
-              <Star className="w-5 h-5 text-yellow-400" />
-              <span>85.38% LOCOMO & 59.5% ScreenshotVQA</span>
-            </div>
-            <div className="flex items-center gap-2">
-              <Database className="w-5 h-5 text-blue-400" />
-              <span>99.9% Storage Reduction</span>
-            </div>
-          </motion.div>
-          
-          {/* Feature Highlight Blocks */}
-          <motion.div 
-            className="mt-20 mb-16 grid grid-cols-1 md:grid-cols-3 gap-8 max-w-6xl mx-auto"
-            initial={{ opacity: 0, y: 60 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.6, delay: 1.2 }}
-          >
-            {/* Block 1 - Advanced Memory System */}
+            {/* Point 1 - Give Memory */}
             <motion.div 
               className="relative group"
               whileHover={{ scale: 1.05, zIndex: 10 }}
@@ -296,33 +245,28 @@ function App() {
                 <div className="inline-flex p-3 rounded-xl bg-gradient-to-r from-blue-500 to-teal-500 text-white mb-6">
                   <Brain className="w-8 h-8" />
                 </div>
-                <h3 className="text-2xl font-bold text-white mb-4">The World's Most Advanced Memory System for LLM Agents</h3>
-                <p className="text-gray-400 leading-relaxed">Built specifically for LLM agents with cutting-edge memory architecture that outperforms all existing solutions</p>
+                <h3 className="text-2xl font-bold text-white mb-4">Give Memory to Your AI</h3>
+                <p className="text-gray-400 leading-relaxed">Equip your assistants, employees, and companions with powerful memory capabilities</p>
               </div>
             </motion.div>
             
-            {/* Block 2 - Personal Private Memory */}
+            {/* Point 2 - Personal & Private */}
             <motion.div 
               className="relative group"
               whileHover={{ scale: 1.05, zIndex: 10 }}
               transition={{ duration: 0.3 }}
             >
               <div className="absolute inset-0 bg-gradient-to-r from-purple-500 to-pink-500 rounded-2xl opacity-0 group-hover:opacity-20 transition-opacity duration-300" />
-              <a 
-                href="https://docs.mirix.io/advanced/security-privacy/" 
-                target="_blank" 
-                rel="noopener noreferrer"
-                className="block relative bg-slate-800/50 backdrop-blur-sm border border-gray-700 rounded-2xl p-8 h-full hover:border-purple-500 transition-all duration-300 cursor-pointer"
-              >
+              <div className="relative bg-slate-800/50 backdrop-blur-sm border border-gray-700 rounded-2xl p-8 h-full hover:border-purple-500 transition-all duration-300">
                 <div className="inline-flex p-3 rounded-xl bg-gradient-to-r from-purple-500 to-pink-500 text-white mb-6">
                   <Lock className="w-8 h-8" />
                 </div>
-                <h3 className="text-2xl font-bold text-white mb-4">Your Own Personal Private Memory</h3>
-                <p className="text-gray-400 leading-relaxed">Builds visualizable and structured memory that belongs entirely to you - completely private and secure</p>
-              </a>
+                <h3 className="text-2xl font-bold text-white mb-4">Personal & Private</h3>
+                <p className="text-gray-400 leading-relaxed">Your memory is stored locally, ensuring complete privacy and security</p>
+              </div>
             </motion.div>
             
-            {/* Block 3 - Token Trading */}
+            {/* Point 3 - Best Performing */}
             <motion.div 
               className="relative group"
               whileHover={{ scale: 1.05, zIndex: 10 }}
@@ -331,21 +275,18 @@ function App() {
               <div className="absolute inset-0 bg-gradient-to-r from-yellow-500 to-orange-500 rounded-2xl opacity-0 group-hover:opacity-20 transition-opacity duration-300" />
               <div className="relative bg-slate-800/50 backdrop-blur-sm border border-gray-700 rounded-2xl p-8 h-full hover:border-yellow-500 transition-all duration-300">
                 <div className="inline-flex p-3 rounded-xl bg-gradient-to-r from-yellow-500 to-orange-500 text-white mb-6">
-                  <Zap className="w-8 h-8" />
+                  <Star className="w-8 h-8" />
                 </div>
-                <h3 className="text-2xl font-bold text-white mb-4">DePIN Memory Collection and Marketplace</h3>
-                <p className="text-gray-400 leading-relaxed">
-                  Build community by sharing your experience, and monetize through memory exchange
-                  <span className="block mt-2 text-yellow-400 font-semibold text-sm">🚀 Upcoming Functionality</span>
-                </p>
+                <h3 className="text-2xl font-bold text-white mb-4">Best Performing</h3>
+                <p className="text-gray-400 leading-relaxed">The highest accuracy memory system of all, outperforming every competitor</p>
               </div>
             </motion.div>
           </motion.div>
         </div>
       </section>
 
-      {/* Executive Summary Section */}
-      <section id="summary" className="py-24 px-4 bg-slate-900/50">
+      {/* Applications Section */}
+      <section id="applications" className="py-24 px-4 bg-slate-900/50">
         <div className="max-w-6xl mx-auto">
           <motion.div 
             className="text-center mb-16"
@@ -354,90 +295,90 @@ function App() {
             viewport={{ once: true }}
             transition={{ duration: 0.6 }}
           >
-            <h2 className="text-5xl font-bold text-white mb-12">Executive Summary</h2>
-            
-            <div className="space-y-8 text-left">
-              {/* First paragraph - What MIRIX can do */}
-              <motion.div 
-                className="text-xl text-gray-300 leading-relaxed"
-                initial={{ opacity: 0, y: 40 }}
+            <h2 className="text-5xl font-bold text-white mb-6">Applications</h2>
+            <p className="text-xl text-gray-400 max-w-3xl mx-auto">
+              Integrate MIRIX into your favorite AI tools and platforms
+            </p>
+          </motion.div>
+          
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-8 max-w-4xl mx-auto">
+            {/* Claude-Code Integration */}
+            <Link to="/blog/claude-agent-integration" className="block relative group">
+              <motion.div
+                initial={{ opacity: 0, y: 60 }}
                 whileInView={{ opacity: 1, y: 0 }}
                 viewport={{ once: true }}
                 transition={{ duration: 0.6, delay: 0.2 }}
+                whileHover={{ scale: 1.05 }}
               >
-                <p>
-                  MIRIX is redefining the future of AI memory, solving the field's most critical challenge: enabling language models to remember. <span className="text-green-400 font-semibold">For the first time, AI agents can have memory that is truly useful in real-world scenarios, transcending text to embrace rich visual and multimodal experiences.</span>
-                </p>
+                <div className="absolute inset-0 bg-gradient-to-r from-blue-500 to-purple-500 rounded-2xl opacity-0 group-hover:opacity-20 transition-opacity duration-300" />
+                <div className="relative bg-slate-800/50 backdrop-blur-sm border border-gray-700 rounded-2xl p-8 hover:border-blue-500 transition-all duration-300">
+                  <div className="inline-flex p-3 rounded-xl bg-gradient-to-r from-blue-500 to-purple-500 text-white mb-6">
+                    <Settings className="w-8 h-8" />
+                  </div>
+                  <h3 className="text-2xl font-bold text-white mb-4">Equip Claude Agent with MIRIX</h3>
+                  <p className="text-gray-400 leading-relaxed mb-4">
+                    Give your Claude agent persistent memory to remember conversations, preferences, and context across sessions
+                  </p>
+                  <div className="flex items-center text-blue-400 font-semibold">
+                    Learn More <ArrowRight className="w-4 h-4 ml-2" />
+                  </div>
+                </div>
               </motion.div>
-
-              {/* Second paragraph - Multimodal performance */}
-              <motion.div 
-                className="text-xl text-gray-300 leading-relaxed"
-                initial={{ opacity: 0, y: 40 }}
-                whileInView={{ opacity: 1, y: 0 }}
-                viewport={{ once: true }}
-                transition={{ duration: 0.6, delay: 0.4 }}
-              >
-                <p>
-                  With <span className="text-green-400 font-semibold">multimodal input</span>, MIRIX, as the <span className="text-green-400 font-semibold">ONLY</span> memory system capable of processing massive images, delivers <span className="text-green-400 font-bold text-2xl">35%</span> higher performance than the RAG baseline while reducing storage requirements by <span className="text-green-400 font-bold text-2xl">99.9%</span>.
-                </p>
-              </motion.div>
-
-              {/* Third paragraph - Text-only performance */}
-              <motion.div 
-                className="text-xl text-gray-300 leading-relaxed"
-                initial={{ opacity: 0, y: 40 }}
-                whileInView={{ opacity: 1, y: 0 }}
-                viewport={{ once: true }}
-                transition={{ duration: 0.6, delay: 0.6 }}
-              >
-                <p>
-                  Even with only text input, MIRIX shows significantly better performances than competitors, achieving <span className="text-green-400 font-bold text-2xl">85.4%</span> accuracy on memory benchmarks—far surpassing <span className="text-red-400 font-semibold">MemOS (73.3%)</span> and <span className="text-red-400 font-semibold">Mem0 (68.4%)</span>.
-                </p>
-              </motion.div>
-            </div>
+            </Link>
             
-            {/* Key highlights */}
-            <motion.div 
-              className="mt-16 grid grid-cols-1 md:grid-cols-3 gap-8"
-              initial={{ opacity: 0, y: 40 }}
+            {/* Langgraph Integration */}
+            <motion.a
+              href="#"
+              className="block relative group"
+              initial={{ opacity: 0, y: 60 }}
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true }}
-              transition={{ duration: 0.6, delay: 0.8 }}
+              transition={{ duration: 0.6, delay: 0.4 }}
+              whileHover={{ scale: 1.05 }}
             >
-              <div className="bg-slate-800/50 rounded-2xl p-8 border border-green-500/30">
-                <div className="text-4xl font-bold text-green-400 mb-2">First</div>
-                <div className="text-lg text-white font-semibold mb-2">Truly Useful AI Memory</div>
-                <div className="text-gray-400">Real-world scenarios with visual and multimodal experiences</div>
+              <div className="absolute inset-0 bg-gradient-to-r from-teal-500 to-green-500 rounded-2xl opacity-0 group-hover:opacity-20 transition-opacity duration-300" />
+              <div className="relative bg-slate-800/50 backdrop-blur-sm border border-gray-700 rounded-2xl p-8 hover:border-teal-500 transition-all duration-300">
+                <div className="inline-flex p-3 rounded-xl bg-gradient-to-r from-teal-500 to-green-500 text-white mb-6">
+                  <Database className="w-8 h-8" />
+                </div>
+                <h3 className="text-2xl font-bold text-white mb-4">Integrate MIRIX into Langgraph</h3>
+                <p className="text-gray-400 leading-relaxed mb-4">
+                  Enhance your LangGraph agents with advanced memory capabilities for more sophisticated multi-step workflows
+                </p>
+                <div className="flex items-center text-teal-400 font-semibold">
+                  Learn More <ArrowRight className="w-4 h-4 ml-2" />
+                </div>
               </div>
-              
-              <div className="bg-slate-800/50 rounded-2xl p-8 border border-blue-500/30">
-                <div className="text-4xl font-bold text-blue-400 mb-2">World's Only</div>
-                <div className="text-lg text-white font-semibold mb-2">Massive Image Processing</div>
-                <div className="text-gray-400">35% better performance, 99.9% storage reduction</div>
-              </div>
-              
-              <div className="bg-slate-800/50 rounded-2xl p-8 border border-purple-500/30">
-                <div className="text-4xl font-bold text-purple-400 mb-2">85.4%</div>
-                <div className="text-lg text-white font-semibold mb-2">Memory Benchmark Accuracy</div>
-                <div className="text-gray-400">Far surpassing all competitors</div>
-              </div>
-            </motion.div>
-          </motion.div>
+            </motion.a>
+          </div>
         </div>
       </section>
 
-      {/* How It Works Section */}
-      <section id="how-it-works" className="py-24 px-4 bg-slate-800/10">
+      {/* Desktop Agent Section */}
+      <section id="desktop-agent" className="py-24 px-4 bg-slate-800/10">
         <div className="max-w-7xl mx-auto">
           <motion.div 
-            className="text-center mb-16"
+            className="text-center mb-4"
             initial={{ opacity: 0, y: 60 }}
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
             transition={{ duration: 0.6 }}
           >
-            <h2 className="text-5xl font-bold text-white mb-6">How It Works</h2>
+            <h2 className="text-5xl font-bold text-white mb-6">Experience MIRIX Even if You're Not a Developer</h2>
+            <p className="text-xl text-gray-400 max-w-3xl mx-auto mb-12">
+              Try our desktop agent application
+            </p>
+          </motion.div>
+          
+          <motion.div 
+            className="text-center mb-16"
+            initial={{ opacity: 0, y: 60 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true }}
+            transition={{ duration: 0.6, delay: 0.2 }}
+          >
+            <h3 className="text-3xl font-bold text-white mb-6">How It Works</h3>
             <p className="text-xl text-gray-400 max-w-3xl mx-auto">
               Mirix automatically takes screenshots and builds a personal memory that is visualizable and only belongs to you. 
               This memory is equipped with an intelligent agent that knows everything about you and your digital activities.
@@ -728,9 +669,9 @@ function App() {
                 <div className="w-3 h-3 bg-yellow-500 rounded-full"></div>
                 <span className="text-yellow-400 font-semibold text-sm">UPCOMING FUNCTIONALITY</span>
               </div>
-              <h3 className="text-3xl font-bold text-white mb-6">AI Pins, Wearable Devices, & Robots</h3>
+              <h3 className="text-3xl font-bold text-white mb-6">Intelligent Personal Assistants, Wearable Devices, & Robots</h3>
               <p className="text-lg text-gray-400 mb-12 max-w-4xl mx-auto leading-relaxed">
-                The future of AI-powered devices with MIRIX memory system as the backend. Imagine AI pins that remember 
+                The future of AI-powered devices with MIRIX memory system as the backend. Imagine intelligent assistants that remember 
                 your conversations, wearable devices that understand your habits, and robots that learn from your daily routines.
               </p>
               
@@ -743,8 +684,8 @@ function App() {
                   <div className="w-16 h-16 bg-gradient-to-r from-yellow-500 to-orange-500 rounded-full flex items-center justify-center mx-auto mb-6">
                     <Zap className="w-8 h-8 text-white" />
                   </div>
-                  <h4 className="text-xl font-bold text-white mb-4">AI Pins</h4>
-                  <p className="text-gray-400 text-sm">Smart wearable pins that remember your experiences and help you memorize.</p>
+                  <h4 className="text-xl font-bold text-white mb-4">Intelligent Personal Assistant</h4>
+                  <p className="text-gray-400 text-sm">Remembers your experiences and helps you throughout the day.</p>
                 </motion.div>
                 
                 <motion.div 
@@ -775,274 +716,6 @@ function App() {
           </div>
         </div>
       </section>
-
-
-      {/* Performance Benchmarks */}
-      <section id="benchmarks" className="py-24 px-4 bg-slate-800/20">
-        <div className="max-w-7xl mx-auto">
-          <motion.div 
-            className="text-center mb-16"
-            initial={{ opacity: 0, y: 60 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true }}
-            transition={{ duration: 0.6 }}
-          >
-            <h2 className="text-5xl font-bold text-white mb-6">Performance Benchmarks</h2>
-            <p className="text-xl text-gray-400 max-w-3xl mx-auto">
-              Comprehensive evaluation results demonstrating Mirix's superior performance across key metrics
-            </p>
-          </motion.div>
-          
-          <motion.div 
-            className="bg-slate-800/30 rounded-2xl p-8 border border-gray-700 overflow-x-auto"
-            initial={{ opacity: 0, y: 60 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true }}
-            transition={{ duration: 0.6 }}
-          >
-            <h3 className="text-2xl font-bold text-white mb-4 text-center">LOCOMO Dataset - LLM-as-a-Judge Scores</h3>
-            <p className="text-gray-400 text-center mb-8">Percentage scores (higher is better) across different question types</p>
-            
-            <div className="min-w-[800px]">
-              <div className="grid grid-cols-6 gap-3 mb-4 font-bold text-gray-300 text-sm">
-                <div>Method</div>
-                <div className="text-center">Single Hop</div>
-                <div className="text-center">Multi-Hop</div>
-                <div className="text-center">Open Domain</div>
-                <div className="text-center">Temporal</div>
-                <div className="text-center">Overall</div>
-              </div>
-              
-              {/* GPT-4o-mini section */}
-              <div className="mb-6">
-                <h4 className="text-lg font-semibold text-blue-400 mb-3 border-b border-blue-400/30 pb-2">gpt-4o-mini</h4>
-                {benchmarks.filter(b => b.category === 'gpt-4o-mini').map((benchmark, index) => (
-                  <motion.div
-                    key={`${benchmark.model}-${benchmark.category}`}
-                    className="grid grid-cols-6 gap-3 p-3 rounded-lg mb-2 bg-slate-700/30 hover:bg-slate-700/50 transition-colors text-sm"
-                    initial={{ opacity: 0, x: -20 }}
-                    whileInView={{ opacity: 1, x: 0 }}
-                    viewport={{ once: true }}
-                    transition={{ duration: 0.4, delay: index * 0.05 }}
-                  >
-                    <div className="font-semibold text-white">{benchmark.model}</div>
-                    <div className="text-center text-gray-300">{benchmark.singleHop}</div>
-                    <div className="text-center text-gray-300">{benchmark.multiHop}</div>
-                    <div className="text-center text-gray-300">{benchmark.openDomain}</div>
-                    <div className="text-center text-gray-300">{benchmark.temporal}</div>
-                    <div className="text-center font-semibold text-gray-300">{benchmark.overall}</div>
-                  </motion.div>
-                ))}
-              </div>
-              
-              {/* GPT-4.1-mini section */}
-              <div className="mb-6">
-                <h4 className="text-lg font-semibold text-purple-400 mb-3 border-b border-purple-400/30 pb-2">gpt-4.1-mini</h4>
-                {benchmarks.filter(b => b.category === 'gpt-4.1-mini').map((benchmark, index) => (
-                  <motion.div
-                    key={`${benchmark.model}-${benchmark.category}`}
-                    className="grid grid-cols-6 gap-3 p-3 rounded-lg mb-2 bg-slate-700/30 hover:bg-slate-700/50 transition-colors text-sm"
-                    initial={{ opacity: 0, x: -20 }}
-                    whileInView={{ opacity: 1, x: 0 }}
-                    viewport={{ once: true }}
-                    transition={{ duration: 0.4, delay: index * 0.05 }}
-                  >
-                    <div className="font-semibold text-white">{benchmark.model}</div>
-                    <div className="text-center text-gray-300">{benchmark.singleHop}</div>
-                    <div className="text-center text-gray-300">{benchmark.multiHop}</div>
-                    <div className="text-center text-gray-300">{benchmark.openDomain}</div>
-                    <div className="text-center text-gray-300">{benchmark.temporal}</div>
-                    <div className="text-center font-semibold text-gray-300">{benchmark.overall}</div>
-                  </motion.div>
-                ))}
-              </div>
-              
-              {/* Mirix section */}
-              <div className="mb-4">
-                {benchmarks.filter(b => b.category === 'mirix').map((benchmark, index) => (
-                  <motion.div
-                    key={`${benchmark.model}-${benchmark.category}`}
-                    className="grid grid-cols-6 gap-3 p-4 rounded-xl mb-2 bg-teal-500/20 border border-teal-500/50"
-                    initial={{ opacity: 0, x: -20 }}
-                    whileInView={{ opacity: 1, x: 0 }}
-                    viewport={{ once: true }}
-                    transition={{ duration: 0.4, delay: index * 0.05 }}
-                    whileHover={{ scale: 1.02 }}
-                  >
-                    <div className="font-bold text-teal-300 flex items-center">
-                      {benchmark.model}
-                      <span className="ml-2 bg-teal-500 text-white px-2 py-1 rounded-full text-xs">BEST</span>
-                    </div>
-                    <div className="text-center font-bold text-green-400">{benchmark.singleHop}</div>
-                    <div className="text-center font-bold text-green-400">{benchmark.multiHop}</div>
-                    <div className="text-center font-bold text-green-400">{benchmark.openDomain}</div>
-                    <div className="text-center font-bold text-green-400">{benchmark.temporal}</div>
-                    <div className="text-center font-bold text-green-400 text-lg">{benchmark.overall}</div>
-                  </motion.div>
-                ))}
-              </div>
-              
-              {/* Upper bound section */}
-              <div className="border-t border-gray-600 pt-4">
-                <h4 className="text-sm font-semibold text-gray-500 mb-2">Upper Bound</h4>
-                {benchmarks.filter(b => b.category === 'upperbound').map((benchmark, index) => (
-                  <motion.div
-                    key={`${benchmark.model}-${benchmark.category}`}
-                    className="grid grid-cols-6 gap-3 p-3 rounded-lg bg-gray-700/30 text-sm"
-                    initial={{ opacity: 0, x: -20 }}
-                    whileInView={{ opacity: 1, x: 0 }}
-                    viewport={{ once: true }}
-                    transition={{ duration: 0.4, delay: index * 0.05 }}
-                  >
-                    <div className="font-semibold text-gray-400">{benchmark.model}</div>
-                    <div className="text-center text-gray-400">{benchmark.singleHop}</div>
-                    <div className="text-center text-gray-400">{benchmark.multiHop}</div>
-                    <div className="text-center text-gray-400">{benchmark.openDomain}</div>
-                    <div className="text-center text-gray-400">{benchmark.temporal}</div>
-                    <div className="text-center font-semibold text-gray-400">{benchmark.overall}</div>
-                  </motion.div>
-                ))}
-              </div>
-            </div>
-          </motion.div>
-
-          {/* ScreenshotVQA Benchmark */}
-          <motion.div 
-            className="bg-slate-800/30 rounded-2xl p-8 border border-gray-700 overflow-x-auto mt-12"
-            initial={{ opacity: 0, y: 60 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true }}
-            transition={{ duration: 0.6, delay: 0.3 }}
-          >
-            <h3 className="text-2xl font-bold text-white mb-4 text-center">ScreenshotVQA Dataset Results</h3>
-            <p className="text-gray-400 text-center mb-8">Accuracy and storage efficiency across different students</p>
-            
-            <div className="min-w-[900px]">
-              <div className="grid grid-cols-9 gap-2 mb-4 font-bold text-gray-300 text-sm">
-                <div className="text-center"></div>
-                <div className="col-span-2 text-center border-b border-blue-400/30 pb-2">
-                  <div className="text-blue-400 font-semibold">Student 1</div>
-                </div>
-                <div className="col-span-2 text-center border-b border-purple-400/30 pb-2">
-                  <div className="text-purple-400 font-semibold">Student 2</div>
-                </div>
-                <div className="col-span-2 text-center border-b border-green-400/30 pb-2">
-                  <div className="text-green-400 font-semibold">Student 3</div>
-                </div>
-                <div className="col-span-2 text-center border-b border-teal-400/30 pb-2">
-                  <div className="text-teal-400 font-semibold">Overall</div>
-                </div>
-              </div>
-              
-              <div className="grid grid-cols-9 gap-2 mb-4 font-semibold text-gray-400 text-xs">
-                <div>Method</div>
-                <div className="text-center">Acc ↑</div>
-                <div className="text-center">Storage ↓</div>
-                <div className="text-center">Acc ↑</div>
-                <div className="text-center">Storage ↓</div>
-                <div className="text-center">Acc ↑</div>
-                <div className="text-center">Storage ↓</div>
-                <div className="text-center">Acc ↑</div>
-                <div className="text-center">Storage ↓</div>
-              </div>
-              
-              {screenshotVQABenchmarks.map((benchmark, index) => (
-                <motion.div
-                  key={benchmark.model}
-                  className={`grid grid-cols-9 gap-2 p-3 rounded-lg mb-2 text-sm ${
-                    benchmark.highlight 
-                      ? 'bg-teal-500/20 border border-teal-500/50' 
-                      : 'bg-slate-700/30 hover:bg-slate-700/50'
-                  } transition-colors`}
-                  initial={{ opacity: 0, x: -20 }}
-                  whileInView={{ opacity: 1, x: 0 }}
-                  viewport={{ once: true }}
-                  transition={{ duration: 0.4, delay: index * 0.1 }}
-                  whileHover={{ scale: benchmark.highlight ? 1.02 : 1.01 }}
-                >
-                  <div className={`font-semibold flex items-center ${
-                    benchmark.highlight ? 'text-teal-300' : 'text-white'
-                  }`}>
-                    {benchmark.model}
-                    {benchmark.highlight && (
-                      <span className="ml-2 bg-teal-500 text-white px-1.5 py-0.5 rounded-full text-xs">BEST</span>
-                    )}
-                  </div>
-                  
-                  {/* Student 1 */}
-                  <div className={`text-center ${
-                    benchmark.highlight ? 'text-green-400 font-semibold' : 'text-gray-300'
-                  }`}>
-                    {benchmark.student1Acc}
-                  </div>
-                  <div className={`text-center ${
-                    benchmark.highlight ? 'text-green-400 font-semibold' : 'text-gray-300'
-                  }`}>
-                    {benchmark.student1Storage}
-                  </div>
-                  
-                  {/* Student 2 */}
-                  <div className={`text-center ${
-                    benchmark.highlight ? 'text-green-400 font-semibold' : 'text-gray-300'
-                  }`}>
-                    {benchmark.student2Acc}
-                  </div>
-                  <div className={`text-center ${
-                    benchmark.highlight ? 'text-green-400 font-semibold' : 'text-gray-300'
-                  }`}>
-                    {benchmark.student2Storage}
-                  </div>
-                  
-                  {/* Student 3 */}
-                  <div className={`text-center ${
-                    benchmark.highlight ? 'text-green-400 font-semibold' : 'text-gray-300'
-                  }`}>
-                    {benchmark.student3Acc}
-                  </div>
-                  <div className={`text-center ${
-                    benchmark.highlight ? 'text-green-400 font-semibold' : 'text-gray-300'
-                  }`}>
-                    {benchmark.student3Storage}
-                  </div>
-                  
-                  {/* Overall */}
-                  <div className={`text-center font-semibold ${
-                    benchmark.highlight ? 'text-green-400 text-base' : 'text-gray-300'
-                  }`}>
-                    {benchmark.overallAcc}
-                  </div>
-                  <div className={`text-center font-semibold ${
-                    benchmark.highlight ? 'text-green-400 text-base' : 'text-gray-300'
-                  }`}>
-                    {benchmark.overallStorage}
-                  </div>
-                </motion.div>
-              ))}
-            </div>
-            
-            <div className="mt-6 p-4 bg-slate-900/30 rounded-lg border border-gray-700">
-              <h4 className="text-lg font-semibold text-white mb-3">Key Insights</h4>
-              <div className="grid grid-cols-1 md:grid-cols-2 gap-4 text-sm">
-                <div className="flex items-start gap-2">
-                  <div className="w-2 h-2 bg-green-400 rounded-full mt-2 flex-shrink-0"></div>
-                  <div>
-                    <span className="text-green-400 font-semibold">Best Accuracy:</span>
-                    <span className="text-gray-300 ml-1">MIRIX achieves 59.50% overall accuracy</span>
-                  </div>
-                </div>
-                <div className="flex items-start gap-2">
-                  <div className="w-2 h-2 bg-blue-400 rounded-full mt-2 flex-shrink-0"></div>
-                  <div>
-                    <span className="text-blue-400 font-semibold">Storage Efficiency:</span>
-                    <span className="text-gray-300 ml-1">99.9% reduction vs SigLIP@50 (15.89MB vs 15.07GB)</span>
-                  </div>
-                </div>
-              </div>
-            </div>
-          </motion.div>
-        </div>
-      </section>
-
 
 
       {/* Footer */}
