@@ -10,7 +10,7 @@ function Blog() {
       id: 1,
       title: "Integrating MIRIX into Claude Agent SDK",
       excerpt: "Learn how to give your Claude agents persistent memory across sessions with MIRIX. A complete step-by-step guide with code examples.",
-      date: "2025-01-15",
+      date: "2025-10-16",
       author: "MIRIX Team",
       image: "/blog/mirix_claude.png",
       slug: "claude-agent-integration"
