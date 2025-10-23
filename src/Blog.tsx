@@ -7,12 +7,21 @@ function Blog() {
   // Blog posts data
   const blogPosts = [
     {
+      id: 2,
+      title: "Evaluating MIRIX System on MemoryAgentBench",
+      excerpt: "This article introduces an evaluation of the MIRIX memory system on the comprehensive MemoryAgentBench, demonstrating that MIRIX's multi-agent framework significantly outperforms other RAG agents.",
+      date: "2025-10-20",
+      author: "Yuanzhe Hu, Yu Wang",
+      image: "/blog/figures/mirix_memory_types.png",
+      slug: "memory-agent-bench"
+    },
+    {
       id: 1,
       title: "Integrating MIRIX into Claude Agent SDK",
       excerpt: "Learn how to give your Claude agents persistent memory across sessions with MIRIX. A complete step-by-step guide with code examples.",
       date: "2025-10-16",
       author: "MIRIX Team",
-      image: "/blog/mirix_claude.png",
+      image: "/blog/figures/mirix_claude.png",
       slug: "claude-agent-integration"
     },
     // Add more blog posts here
