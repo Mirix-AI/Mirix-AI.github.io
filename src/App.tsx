@@ -7,53 +7,45 @@ import {
   Lock, 
   Zap,
   Clock,
-  MessageCircle,
   Settings,
   ArrowRight,
   Github,
-  Star,
   Download,
-  Camera
+  Code,
+  Layers,
+  Cpu,
+  Shield,
+  Terminal,
+  ChevronRight,
+  Command
 } from 'lucide-react';
 import './App.css';
 import img0 from './assets/img0.png';
 import img1 from './assets/img1.png';
-import img2 from './assets/img2.png';
 import img3 from './assets/img3.png';
-import img4 from './assets/img4.png';
-import img5 from './assets/img5.png';
-import img6 from './assets/img6.png';
 
 function App() {
   const [isNavVisible, setIsNavVisible] = useState(true);
   const [lastScrollY, setLastScrollY] = useState(0);
-  const [isNavHovered, setIsNavHovered] = useState(false);
 
   // Handle scroll direction
   useEffect(() => {
     const handleScroll = () => {
       const currentScrollY = window.scrollY;
-      
-      // Show navbar when at top of page or when hovered
-      if (currentScrollY < 10 || isNavHovered) {
+      if (currentScrollY < 10) {
         setIsNavVisible(true);
       } else if (currentScrollY > lastScrollY) {
-        // Scrolling down - hide navbar
         setIsNavVisible(false);
       } else {
-        // Scrolling up - show navbar
         setIsNavVisible(true);
       }
-      
       setLastScrollY(currentScrollY);
     };
 
     window.addEventListener('scroll', handleScroll, { passive: true });
     return () => window.removeEventListener('scroll', handleScroll);
-  }, [lastScrollY, isNavHovered]);
+  }, [lastScrollY]);
 
-
-  // Smooth scroll function
   const scrollToSection = (sectionId: string) => {
     const element = document.getElementById(sectionId);
     if (element) {
@@ -62,682 +54,378 @@ function App() {
   };
 
   return (
-    <div className="min-h-screen bg-gradient-to-br from-gray-950 via-slate-950 to-black">
+    <div className="min-h-screen bg-[#050505] text-white font-sans selection:bg-white/20">
+      {/* Grid Background */}
+      <div className="fixed inset-0 z-0 pointer-events-none">
+        <div className="absolute inset-0 bg-[linear-gradient(to_right,#80808012_1px,transparent_1px),linear-gradient(to_bottom,#80808012_1px,transparent_1px)] bg-[size:24px_24px]"></div>
+        <div className="absolute left-0 right-0 top-0 -z-10 m-auto h-[310px] w-[310px] rounded-full bg-blue-500 opacity-20 blur-[100px]"></div>
+      </div>
+
       {/* Top Navigation Bar */}
       <nav 
-        className={`fixed top-0 left-0 right-0 z-50 bg-gray-950/90 backdrop-blur-md border-b border-gray-800/50 transition-transform duration-300 ease-in-out ${
+        className={`fixed top-0 left-0 right-0 z-50 border-b border-white/5 bg-[#050505]/80 backdrop-blur-md transition-transform duration-300 ease-in-out ${
           isNavVisible ? 'translate-y-0' : '-translate-y-full'
         }`}
-        onMouseEnter={() => setIsNavHovered(true)}
-        onMouseLeave={() => setIsNavHovered(false)}
       >
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="flex items-center justify-between h-16">
+          <div className="flex items-center justify-between h-14">
             {/* Logo */}
-            <div className="flex items-center min-w-[180px]">
-              <motion.div
-                className="flex items-center cursor-pointer"
-                whileHover={{ scale: 1.05 }}
-                onClick={() => scrollToSection('hero')}
-              >
-                <img 
-                  src="/logo.png" 
-                  alt="MIRIX Logo"
-                  className="h-8 rounded"
-                />
-              </motion.div>
-            </div>
+            <motion.div 
+              className="flex items-center cursor-pointer" 
+              onClick={() => scrollToSection('hero')}
+              whileHover={{ scale: 1.05 }}
+            >
+              <img 
+                src="/logo.png" 
+                alt="MIRIX Logo"
+                className="h-8 rounded"
+              />
+            </motion.div>
 
             {/* Navigation Items */}
             <div className="hidden md:flex items-center space-x-8">
-              <button
-                onClick={() => scrollToSection('hero')}
-                className="text-gray-300 hover:text-white transition-colors duration-200 text-sm font-medium"
-              >
-                About
-              </button>
-              <button
-                onClick={() => scrollToSection('applications')}
-                className="text-gray-300 hover:text-white transition-colors duration-200 text-sm font-medium"
-              >
-                Applications
-              </button>
-              <button
-                onClick={() => scrollToSection('desktop-agent')}
-                className="text-gray-300 hover:text-white transition-colors duration-200 text-sm font-medium"
-              >
-                Desktop Agent
-              </button>
-              <button
-                onClick={() => scrollToSection('use-cases')}
-                className="text-gray-300 hover:text-white transition-colors duration-200 text-sm font-medium"
-              >
-                Use Cases
-              </button>
-              <Link
-                to="/blog"
-                className="text-gray-300 hover:text-white transition-colors duration-200 text-sm font-medium"
-              >
-                Blog
-              </Link>
-              <a
-                href="https://github.com/Mirix-AI/MIRIX"
-                target="_blank"
-                rel="noopener noreferrer"
-                className="text-gray-300 hover:text-white transition-colors duration-200 text-sm font-medium"
-              >
-                GitHub
-              </a>
+              <button onClick={() => scrollToSection('developers')} className="text-sm text-zinc-400 hover:text-white transition-colors">Developers</button>
+              <button onClick={() => scrollToSection('app')} className="text-sm text-zinc-400 hover:text-white transition-colors">App</button>
+              <button onClick={() => scrollToSection('use-cases')} className="text-sm text-zinc-400 hover:text-white transition-colors">Use Cases</button>
+              <Link to="/blog" className="text-sm text-zinc-400 hover:text-white transition-colors">Blog</Link>
+              <a href="https://github.com/Mirix-AI/MIRIX" target="_blank" rel="noopener noreferrer" className="text-sm text-zinc-400 hover:text-white transition-colors">GitHub</a>
             </div>
 
-            {/* Download Button */}
-            <div className="flex items-center justify-end min-w-[180px]">
-              <motion.a
+            {/* CTA */}
+            <div className="flex items-center justify-end">
+              <a
                 href="https://github.com/Mirix-AI/MIRIX/releases/download/v0.1.3/MIRIX-0.1.3-arm64.dmg"
-                download="MIRIX-0.1.0-arm64.dmg"
-                className="bg-gray-800 hover:bg-gray-700 border border-gray-700 hover:border-gray-600 text-white px-4 py-2 rounded-lg font-medium text-sm transition-all duration-200 flex items-center gap-2"
-                whileHover={{ scale: 1.05 }}
-                whileTap={{ scale: 0.95 }}
+                className="bg-white text-black px-4 py-1.5 rounded text-sm font-medium hover:bg-zinc-200 transition-colors"
               >
-                <svg className="w-4 h-4" fill="currentColor" viewBox="0 0 24 24">
-                  <path d="M18.71 19.5c-.83 1.24-1.71 2.45-3.05 2.47-1.34.03-1.77-.79-3.29-.79-1.53 0-2 .77-3.27.82-1.31.05-2.3-1.32-3.14-2.53C4.25 17 2.94 12.45 4.7 9.39c.87-1.52 2.43-2.48 4.12-2.51 1.28-.02 2.5.87 3.29.87.78 0 2.26-1.07 3.81-.91.65.03 2.47.26 3.64 1.98-.09.06-2.17 1.28-2.15 3.81.03 3.02 2.65 4.03 2.68 4.04-.03.07-.42 1.44-1.38 2.83M13 3.5c.73-.83 1.94-1.46 2.94-1.5.13 1.17-.34 2.35-1.04 3.19-.69.85-1.83 1.51-2.95 1.42-.15-1.15.41-2.35 1.05-3.11z"/>
-                </svg>
-                Download for Mac
-              </motion.a>
+                Download App
+              </a>
             </div>
           </div>
         </div>
       </nav>
 
       {/* Hero Section */}
-      <section id="hero" className="relative min-h-screen flex items-center justify-center px-4 pt-32 overflow-hidden">
-        {/* Background Animation */}
-        <div className="absolute inset-0 opacity-20">
-          {[...Array(30)].map((_, i) => (
-            <motion.div
-              key={i}
-              className="absolute w-2 h-2 bg-blue-400 rounded-full"
-              animate={{
-                x: [0, Math.random() * 100 - 50],
-                y: [0, Math.random() * 100 - 50],
-                opacity: [0.3, 0.8, 0.3]
-              }}
-              transition={{
-                duration: Math.random() * 3 + 2,
-                repeat: Infinity,
-                ease: "linear"
-              }}
-              style={{
-                left: `${Math.random() * 100}%`,
-                top: `${Math.random() * 100}%`,
-              }}
-            />
-          ))}
-        </div>
-
-        <div className="relative z-10 text-center max-w-6xl mx-auto">
-          <motion.div 
-            className="mb-8"
-            initial={{ opacity: 0, y: 60 }}
+      <section id="hero" className="relative pt-32 pb-20 px-4 sm:px-6 lg:px-8 border-b border-white/5">
+        <div className="max-w-6xl mx-auto text-center">
+          <motion.div
+            initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.6, delay: 0.2 }}
+            transition={{ duration: 0.5 }}
+            className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-white/5 border border-white/10 text-sm text-zinc-400 mb-8"
           >
-            <video 
-              src="/logo.mp4" 
-              autoPlay
-              loop
-              muted
-              playsInline
-              className="h-32 mx-auto rounded-lg shadow-2xl"
-            />
+            <span className="relative flex h-2 w-2">
+              <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-green-400 opacity-75"></span>
+              <span className="relative inline-flex rounded-full h-2 w-2 bg-green-500"></span>
+            </span>
+            v0.1.3 is now available
           </motion.div>
-          
+
           <motion.h1 
-            className="text-5xl md:text-6xl font-bold text-white mb-6 leading-tight"
-            initial={{ opacity: 0, y: 60 }}
+            className="text-4xl md:text-6xl font-bold tracking-tight text-white mb-6 leading-[1.1]"
+            initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.6, delay: 0.3 }}
+            transition={{ duration: 0.5, delay: 0.1 }}
           >
-            The World's Most Advanced<br/>Memory System for AI Agents
+            Wrap any AI agent in<br />
+            <span className="text-transparent bg-clip-text bg-gradient-to-b from-white to-white/50">
+              production-grade memory in seconds
+            </span>
           </motion.h1>
           
           <motion.p 
-            className="text-xl text-gray-300 mb-12 max-w-3xl mx-auto leading-relaxed"
-            initial={{ opacity: 0, y: 60 }}
+            className="text-xl text-zinc-400 mb-10 max-w-2xl mx-auto leading-relaxed"
+            initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.6, delay: 0.4 }}
+            transition={{ duration: 0.5, delay: 0.2 }}
           >
-            With our Python SDK, it can be easily wrapped on your agents
+            Infrastructure for persistent, private, and intelligent agent memory.
+            Open-source SDK for developers. Desktop app for everyone.
           </motion.p>
           
           <motion.div 
             className="flex flex-col sm:flex-row gap-4 justify-center items-center mb-20"
-            initial={{ opacity: 0, y: 60 }}
+            initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.6, delay: 0.6 }}
+            transition={{ duration: 0.5, delay: 0.3 }}
           >
-            <a href="https://docs.mirix.io/" target="_blank" rel="noopener noreferrer" className="bg-gradient-to-r from-blue-600 to-teal-600 hover:from-blue-700 hover:to-teal-700 text-white px-8 py-4 rounded-full font-semibold text-lg transition-all duration-300 flex items-center gap-2 shadow-2xl hover:shadow-teal-500/25">
-              <Download className="w-5 h-5" />
-              Get Started
-              <ArrowRight className="w-5 h-5" />
+            <a href="https://docs.mirix.io/" target="_blank" rel="noopener noreferrer" className="h-12 px-6 rounded bg-white text-black font-medium flex items-center gap-2 hover:bg-zinc-200 transition-colors">
+              <Terminal className="w-4 h-4" />
+              Get Started with SDK
             </a>
-            <a href="https://github.com/Mirix-AI/MIRIX" target="_blank" rel="noopener noreferrer" className="border-2 border-teal-400 text-teal-400 hover:bg-teal-400 hover:text-white px-8 py-4 rounded-full font-semibold text-lg transition-all duration-300 flex items-center gap-2">
-              <Github className="w-5 h-5" />
-              View on GitHub
+            <a href="https://github.com/Mirix-AI/MIRIX" target="_blank" rel="noopener noreferrer" className="h-12 px-6 rounded bg-zinc-900 border border-zinc-800 text-white font-medium flex items-center gap-2 hover:bg-zinc-800 transition-colors">
+              <Github className="w-4 h-4" />
+              Star on GitHub
             </a>
           </motion.div>
-          
-          {/* Three Main Points */}
+
+          {/* Code Preview / Visual */}
           <motion.div 
-            className="mt-20 mb-20 grid grid-cols-1 md:grid-cols-3 gap-8 max-w-6xl mx-auto"
-            initial={{ opacity: 0, y: 60 }}
+            className="relative max-w-4xl mx-auto rounded-xl border border-white/10 bg-[#0A0A0A] shadow-2xl overflow-hidden"
+            initial={{ opacity: 0, y: 40 }}
             animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.6, delay: 0.8 }}
+            transition={{ duration: 0.7, delay: 0.4 }}
           >
-            {/* Point 1 - Give Memory */}
-            <motion.div 
-              className="relative group"
-              whileHover={{ scale: 1.05, zIndex: 10 }}
-              transition={{ duration: 0.3 }}
-            >
-              <div className="absolute inset-0 bg-gradient-to-r from-blue-500 to-teal-500 rounded-2xl opacity-0 group-hover:opacity-20 transition-opacity duration-300" />
-              <div className="relative bg-slate-800/50 backdrop-blur-sm border border-gray-700 rounded-2xl p-8 h-full hover:border-teal-500 transition-all duration-300">
-                <div className="inline-flex p-3 rounded-xl bg-gradient-to-r from-blue-500 to-teal-500 text-white mb-6">
-                  <Brain className="w-8 h-8" />
-                </div>
-                <h3 className="text-2xl font-bold text-white mb-4">Give Memory to Your AI</h3>
-                <p className="text-gray-400 leading-relaxed">Equip your assistants, employees, and companions with powerful memory capabilities</p>
-              </div>
-            </motion.div>
-            
-            {/* Point 2 - Personal & Private */}
-            <motion.div 
-              className="relative group"
-              whileHover={{ scale: 1.05, zIndex: 10 }}
-              transition={{ duration: 0.3 }}
-            >
-              <div className="absolute inset-0 bg-gradient-to-r from-purple-500 to-pink-500 rounded-2xl opacity-0 group-hover:opacity-20 transition-opacity duration-300" />
-              <div className="relative bg-slate-800/50 backdrop-blur-sm border border-gray-700 rounded-2xl p-8 h-full hover:border-purple-500 transition-all duration-300">
-                <div className="inline-flex p-3 rounded-xl bg-gradient-to-r from-purple-500 to-pink-500 text-white mb-6">
-                  <Lock className="w-8 h-8" />
-                </div>
-                <h3 className="text-2xl font-bold text-white mb-4">Personal & Private</h3>
-                <p className="text-gray-400 leading-relaxed">Your memory is stored locally, ensuring complete privacy and security</p>
-              </div>
-            </motion.div>
-            
-            {/* Point 3 - Best Performing */}
-            <motion.div 
-              className="relative group"
-              whileHover={{ scale: 1.05, zIndex: 10 }}
-              transition={{ duration: 0.3 }}
-            >
-              <div className="absolute inset-0 bg-gradient-to-r from-yellow-500 to-orange-500 rounded-2xl opacity-0 group-hover:opacity-20 transition-opacity duration-300" />
-              <div className="relative bg-slate-800/50 backdrop-blur-sm border border-gray-700 rounded-2xl p-8 h-full hover:border-yellow-500 transition-all duration-300">
-                <div className="inline-flex p-3 rounded-xl bg-gradient-to-r from-yellow-500 to-orange-500 text-white mb-6">
-                  <Star className="w-8 h-8" />
-                </div>
-                <h3 className="text-2xl font-bold text-white mb-4">Best Performing</h3>
-                <p className="text-gray-400 leading-relaxed">The highest accuracy memory system of all, outperforming every competitor</p>
-              </div>
-            </motion.div>
+            <div className="flex items-center gap-1.5 px-4 py-3 border-b border-white/5 bg-white/[0.02]">
+              <div className="w-3 h-3 rounded-full bg-red-500/20 border border-red-500/50" />
+              <div className="w-3 h-3 rounded-full bg-yellow-500/20 border border-yellow-500/50" />
+              <div className="w-3 h-3 rounded-full bg-green-500/20 border border-green-500/50" />
+              <div className="ml-4 text-xs text-zinc-500 font-mono">agent_memory.py</div>
+            </div>
+            <div className="p-6 text-left overflow-x-auto">
+              <pre className="text-sm font-mono leading-relaxed text-zinc-300">
+                <code>
+<span className="text-zinc-500"># Original code:</span><br/>
+<span className="text-zinc-500"># response = agent.query(message)</span><br/><br/>
+<span className="text-purple-400">from</span> mirix <span className="text-purple-400">import</span> MemoryClient<br/>
+client = MemoryClient(local=<span className="text-orange-400">True</span>)<br/><br/>
+<span className="text-zinc-500"># 1. Inject relevant context into the prompt</span><br/>
+message = client.wrap_message(message)<br/>
+response = agent.query(message)<br/><br/>
+<span className="text-zinc-500"># 2. Save the interaction</span><br/>
+client.add(messages=[<br/>
+&nbsp;&nbsp;{'{'}<span className="text-green-400">"role"</span>: <span className="text-green-400">"user"</span>, <span className="text-green-400">"content"</span>: [{'{'}<span className="text-green-400">"type"</span>: <span className="text-green-400">"text"</span>, <span className="text-green-400">"text"</span>: message{'}'}]{'}'},<br/>
+&nbsp;&nbsp;{'{'}<span className="text-green-400">"role"</span>: <span className="text-green-400">"assistant"</span>, <span className="text-green-400">"content"</span>: [{'{'}<span className="text-green-400">"type"</span>: <span className="text-green-400">"text"</span>, <span className="text-green-400">"text"</span>: response{'}'}]{'}'}<br/>
+])
+                </code>
+              </pre>
+            </div>
           </motion.div>
         </div>
       </section>
 
-      {/* Applications Section */}
-      <section id="applications" className="py-24 px-4 bg-slate-900/50">
-        <div className="max-w-6xl mx-auto">
-          <motion.div 
-            className="text-center mb-16"
-            initial={{ opacity: 0, y: 60 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true }}
-            transition={{ duration: 0.6 }}
-          >
-            <h2 className="text-5xl font-bold text-white mb-6">Applications</h2>
-            <p className="text-xl text-gray-400 max-w-3xl mx-auto">
-              Integrate MIRIX into your favorite AI tools and platforms
-            </p>
-          </motion.div>
-          
-          <div className="grid grid-cols-1 md:grid-cols-2 gap-8 max-w-4xl mx-auto">
-            {/* Claude-Code Integration */}
-            <Link to="/blog/claude-agent-integration" className="block relative group">
-              <motion.div
-                initial={{ opacity: 0, y: 60 }}
-                whileInView={{ opacity: 1, y: 0 }}
-                viewport={{ once: true }}
-                transition={{ duration: 0.6, delay: 0.2 }}
-                whileHover={{ scale: 1.05 }}
-              >
-                <div className="absolute inset-0 bg-gradient-to-r from-blue-500 to-purple-500 rounded-2xl opacity-0 group-hover:opacity-20 transition-opacity duration-300" />
-                <div className="relative bg-slate-800/50 backdrop-blur-sm border border-gray-700 rounded-2xl p-8 hover:border-blue-500 transition-all duration-300">
-                  <div className="inline-flex p-3 rounded-xl bg-gradient-to-r from-blue-500 to-purple-500 text-white mb-6">
-                    <Settings className="w-8 h-8" />
-                  </div>
-                  <h3 className="text-2xl font-bold text-white mb-4">Equip Claude Agent with MIRIX</h3>
-                  <p className="text-gray-400 leading-relaxed mb-4">
-                    Give your Claude agent persistent memory to remember conversations, preferences, and context across sessions
-                  </p>
-                  <div className="flex items-center text-blue-400 font-semibold">
-                    Learn More <ArrowRight className="w-4 h-4 ml-2" />
-                  </div>
-                </div>
-              </motion.div>
-            </Link>
-            
-            {/* Langgraph Integration */}
-            <motion.a
-              href="#"
-              className="block relative group"
-              initial={{ opacity: 0, y: 60 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true }}
-              transition={{ duration: 0.6, delay: 0.4 }}
-              whileHover={{ scale: 1.05 }}
-            >
-              <div className="absolute inset-0 bg-gradient-to-r from-teal-500 to-green-500 rounded-2xl opacity-0 group-hover:opacity-20 transition-opacity duration-300" />
-              <div className="relative bg-slate-800/50 backdrop-blur-sm border border-gray-700 rounded-2xl p-8 hover:border-teal-500 transition-all duration-300">
-                <div className="inline-flex p-3 rounded-xl bg-gradient-to-r from-teal-500 to-green-500 text-white mb-6">
-                  <Database className="w-8 h-8" />
-                </div>
-                <h3 className="text-2xl font-bold text-white mb-4">Integrate MIRIX into Langgraph</h3>
-                <p className="text-gray-400 leading-relaxed mb-4">
-                  Enhance your LangGraph agents with advanced memory capabilities for more sophisticated multi-step workflows
-                </p>
-                <div className="flex items-center text-teal-400 font-semibold">
-                  Learn More <ArrowRight className="w-4 h-4 ml-2" />
-                </div>
+      {/* Features Grid */}
+      <section className="py-24 px-4 border-b border-white/5 bg-[#050505]">
+        <div className="max-w-7xl mx-auto">
+          <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
+            <div className="p-6 rounded-lg border border-white/10 bg-zinc-900/20 hover:bg-zinc-900/40 transition-colors">
+              <div className="w-10 h-10 rounded bg-blue-500/10 flex items-center justify-center mb-4">
+                <Layers className="w-5 h-5 text-blue-400" />
               </div>
-            </motion.a>
+              <h3 className="text-lg font-semibold text-white mb-2">Universal SDK</h3>
+              <p className="text-zinc-400 text-sm leading-relaxed">
+                Framework-agnostic design. Works seamlessly with LangChain, AutoGen, or your custom agent architecture.
+              </p>
+            </div>
+
+            <div className="p-6 rounded-lg border border-white/10 bg-zinc-900/20 hover:bg-zinc-900/40 transition-colors">
+              <div className="w-10 h-10 rounded bg-purple-500/10 flex items-center justify-center mb-4">
+                <Shield className="w-5 h-5 text-purple-400" />
+              </div>
+              <h3 className="text-lg font-semibold text-white mb-2">Local & Private</h3>
+              <p className="text-zinc-400 text-sm leading-relaxed">
+                Your data never leaves your infrastructure. Full support for local vector stores and embedding models.
+              </p>
+            </div>
+
+            <div className="p-6 rounded-lg border border-white/10 bg-zinc-900/20 hover:bg-zinc-900/40 transition-colors">
+              <div className="w-10 h-10 rounded bg-green-500/10 flex items-center justify-center mb-4">
+                <Cpu className="w-5 h-5 text-green-400" />
+              </div>
+              <h3 className="text-lg font-semibold text-white mb-2">High Performance</h3>
+              <p className="text-zinc-400 text-sm leading-relaxed">
+                Optimized retrieval algorithms ensure your agents get the exact context they need with minimal latency.
+              </p>
+            </div>
           </div>
         </div>
       </section>
 
-      {/* Desktop Agent Section */}
-      <section id="desktop-agent" className="py-24 px-4 bg-slate-800/10">
+      {/* Developers Section */}
+      <section id="developers" className="py-32 px-4 border-b border-white/5">
         <div className="max-w-7xl mx-auto">
-          <motion.div 
-            className="text-center mb-4"
-            initial={{ opacity: 0, y: 60 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true }}
-            transition={{ duration: 0.6 }}
-          >
-            <h2 className="text-5xl font-bold text-white mb-6">Experience MIRIX Even if You're Not a Developer</h2>
-            <p className="text-xl text-gray-400 max-w-3xl mx-auto mb-12">
-              Try our desktop agent application
-            </p>
-          </motion.div>
+          <div className="flex flex-col md:flex-row md:items-end justify-between mb-16 gap-6">
+            <div>
+              <h2 className="text-3xl md:text-4xl font-bold text-white mb-4">Built for Developers</h2>
+              <p className="text-zinc-400 max-w-xl">
+                Integrate advanced memory capabilities into your AI applications with just a few lines of code.
+              </p>
+            </div>
+            <Link to="/blog" className="text-white flex items-center gap-2 hover:text-zinc-300 transition-colors text-sm font-medium">
+              View Documentation <ArrowRight className="w-4 h-4" />
+            </Link>
+          </div>
           
-          <motion.div 
-            className="text-center mb-16"
-            initial={{ opacity: 0, y: 60 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true }}
-            transition={{ duration: 0.6, delay: 0.2 }}
-          >
-            <h3 className="text-3xl font-bold text-white mb-6">How It Works</h3>
-            <p className="text-xl text-gray-400 max-w-3xl mx-auto">
-              Mirix automatically takes screenshots and builds a personal memory that is visualizable and only belongs to you. 
-              This memory is equipped with an intelligent agent that knows everything about you and your digital activities.
-            </p>
-          </motion.div>
-          
-          <div className="relative max-w-6xl mx-auto">
-            {/* Background container for the overlapping images */}
-            <div className="relative h-[600px] md:h-[700px] lg:h-[800px] overflow-hidden rounded-3xl">
-              {/* Image 1 - Bottom layer */}
-              <motion.div
-                className="absolute top-8 left-4 md:left-8 lg:left-12 w-[280px] md:w-[350px] lg:w-[400px] z-10"
-                initial={{ opacity: 0, x: -100, rotate: -5 }}
-                whileInView={{ opacity: 1, x: 0, rotate: -3 }}
-                viewport={{ once: true }}
-                transition={{ duration: 0.8, delay: 0.2 }}
-                whileHover={{ scale: 1.05, rotate: 0, zIndex: 50 }}
-              >
-                <img 
-                  src={img1} 
-                  alt="Mirix Chat Interface" 
-                  className="w-full h-auto rounded-2xl shadow-2xl border border-gray-600 hover:shadow-teal-500/20 transition-all duration-300"
-                />
-              </motion.div>
-              
-              {/* Image 2 - Second layer */}
-              <motion.div
-                className="absolute top-12 md:top-16 right-4 md:right-8 lg:right-12 w-[280px] md:w-[350px] lg:w-[400px] z-20"
-                initial={{ opacity: 0, x: 100, rotate: 5 }}
-                whileInView={{ opacity: 1, x: 0, rotate: 3 }}
-                viewport={{ once: true }}
-                transition={{ duration: 0.8, delay: 0.4 }}
-                whileHover={{ scale: 1.05, rotate: 0, zIndex: 50 }}
-              >
-                <img 
-                  src={img2} 
-                  alt="Mirix Code Integration" 
-                  className="w-full h-auto rounded-2xl shadow-2xl border border-gray-600 hover:shadow-blue-500/20 transition-all duration-300"
-                />
-              </motion.div>
-              
-              {/* Image 3 - Third layer */}
-              <motion.div
-                className="absolute bottom-24 md:bottom-20 left-8 md:left-16 lg:left-20 w-[280px] md:w-[350px] lg:w-[400px] z-30"
-                initial={{ opacity: 0, y: 100, rotate: -3 }}
-                whileInView={{ opacity: 1, y: 0, rotate: -2 }}
-                viewport={{ once: true }}
-                transition={{ duration: 0.8, delay: 0.6 }}
-                whileHover={{ scale: 1.05, rotate: 0, zIndex: 50 }}
-              >
-                <img 
-                  src={img3} 
-                  alt="Mirix Browser Integration" 
-                  className="w-full h-auto rounded-2xl shadow-2xl border border-gray-600 hover:shadow-purple-500/20 transition-all duration-300"
-                />
-              </motion.div>
-              
-              {/* Image 4 - Top layer */}
-              <motion.div
-                className="absolute bottom-16 md:bottom-12 right-8 md:right-16 lg:right-20 w-[280px] md:w-[350px] lg:w-[400px] z-40"
-                initial={{ opacity: 0, y: 100, rotate: 4 }}
-                whileInView={{ opacity: 1, y: 0, rotate: 2 }}
-                viewport={{ once: true }}
-                transition={{ duration: 0.8, delay: 0.8 }}
-                whileHover={{ scale: 1.05, rotate: 0, zIndex: 50 }}
-              >
-                <img 
-                  src={img4} 
-                  alt="Mirix Terminal Integration" 
-                  className="w-full h-auto rounded-2xl shadow-2xl border border-gray-600 hover:shadow-green-500/20 transition-all duration-300"
-                />
-              </motion.div>
-              
-              {/* Image 0 - Central focal point */}
-              <motion.div
-                className="absolute top-[25%] left-1/3 transform -translate-x-1/2 -translate-y-1/2 w-[300px] md:w-[380px] lg:w-[450px] z-50"
-                initial={{ opacity: 0, scale: 0.8, rotate: 1 }}
-                whileInView={{ opacity: 1, scale: 1, rotate: 0 }}
-                viewport={{ once: true }}
-                transition={{ duration: 0.8, delay: 1.0 }}
-                whileHover={{ scale: 1.08, rotate: 0, zIndex: 60 }}
-              >
-                <img 
-                  src={img0} 
-                  alt="Mirix Main Interface" 
-                  className="w-full h-auto rounded-2xl shadow-2xl border border-gray-600 hover:shadow-yellow-500/20 transition-all duration-300"
-                />
-              </motion.div>
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+            {/* Card 1 */}
+            <div className="group relative rounded-xl border border-white/10 bg-zinc-900/20 overflow-hidden">
+              <div className="absolute top-0 right-0 p-6 opacity-20 group-hover:opacity-40 transition-opacity">
+                <Code className="w-24 h-24" />
+              </div>
+              <div className="p-8 relative z-10">
+                <h3 className="text-xl font-bold text-white mb-3">Claude Agent Integration</h3>
+                <p className="text-zinc-400 mb-6 text-sm leading-relaxed max-w-md">
+                  Give your Claude agents persistent long-term memory. Enable them to remember user preferences and past interactions across sessions.
+                </p>
+                <Link to="/blog/claude-agent-integration" className="inline-flex items-center text-sm text-white border border-white/20 rounded px-4 py-2 hover:bg-white/10 transition-colors">
+                  Read Guide
+                </Link>
+              </div>
             </div>
             
-            {/* Feature highlights */}
-            <motion.div 
-              className="mt-16 grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6"
-              initial={{ opacity: 0, y: 60 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true }}
-              transition={{ duration: 0.6, delay: 1.0 }}
-            >
-              <div className="text-center p-6 bg-slate-800/30 rounded-xl border border-gray-700">
-                <Camera className="w-8 h-8 text-teal-400 mx-auto mb-4" />
-                <h3 className="text-lg font-bold text-white mb-2">Automatic Screenshots</h3>
-                <p className="text-gray-400 text-sm">Continuously captures your screen activity to build comprehensive visual memory</p>
+            {/* Card 2 */}
+            <div className="group relative rounded-xl border border-white/10 bg-zinc-900/20 overflow-hidden">
+              <div className="absolute top-0 right-0 p-6 opacity-20 group-hover:opacity-40 transition-opacity">
+                <Command className="w-24 h-24" />
               </div>
-              
-              <div className="text-center p-6 bg-slate-800/30 rounded-xl border border-gray-700">
-                <Lock className="w-8 h-8 text-blue-400 mx-auto mb-4" />
-                <h3 className="text-lg font-bold text-white mb-2">Private Memory</h3>
-                <p className="text-gray-400 text-sm">Your personal memory belongs only to you - visualizable and completely private</p>
+              <div className="p-8 relative z-10">
+                <h3 className="text-xl font-bold text-white mb-3">LangGraph Support</h3>
+                <p className="text-zinc-400 mb-6 text-sm leading-relaxed max-w-md">
+                  Enhance your LangGraph workflows with stateful memory. Build complex, multi-step agents that maintain context.
+                </p>
+                <a href="#" className="inline-flex items-center text-sm text-white border border-white/20 rounded px-4 py-2 hover:bg-white/10 transition-colors">
+                  View Docs
+                </a>
               </div>
-              
-              <div className="text-center p-6 bg-slate-800/30 rounded-xl border border-gray-700">
-                <Brain className="w-8 h-8 text-purple-400 mx-auto mb-4" />
-                <h3 className="text-lg font-bold text-white mb-2">Intelligent Agent</h3>
-                <p className="text-gray-400 text-sm">AI agent deeply integrated with your memory, understanding your complete digital life</p>
-              </div>
-              
-              <div className="text-center p-6 bg-slate-800/30 rounded-xl border border-gray-700">
-                <MessageCircle className="w-8 h-8 text-green-400 mx-auto mb-4" />
-                <h3 className="text-lg font-bold text-white mb-2">Knows Everything</h3>
-                <p className="text-gray-400 text-sm">Chat with an assistant that remembers all your activities and preferences</p>
-              </div>
-            </motion.div>
+            </div>
           </div>
         </div>
       </section>
 
-      {/* Use Cases Section */}
-      <section id="use-cases" className="py-24 px-4 bg-slate-800/20">
+      {/* App Showcase Section */}
+      <section id="app" className="py-32 px-4 bg-zinc-900/30 border-b border-white/5">
         <div className="max-w-7xl mx-auto">
-          <motion.div 
-            className="text-center mb-16"
-            initial={{ opacity: 0, y: 60 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true }}
-            transition={{ duration: 0.6 }}
-          >
-            <h2 className="text-5xl font-bold text-white mb-6">Use Cases</h2>
-            <p className="text-xl text-gray-400 max-w-3xl mx-auto">
-              See how Mirix transforms everyday interactions with intelligent memory-powered assistance
-            </p>
-          </motion.div>
-          
-          <div className="space-y-16">
-            {/* Use Case 1 - Yesterday Activities */}
-            <motion.div 
-              className="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center"
-              initial={{ opacity: 0, y: 60 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true }}
-              transition={{ duration: 0.6, delay: 0.2 }}
-            >
-              <div className="lg:order-1">
-                <div className="inline-flex items-center gap-2 mb-6">
-                  <div className="w-3 h-3 bg-teal-500 rounded-full"></div>
-                  <span className="text-teal-400 font-semibold text-sm">DAILY RECALL</span>
-                </div>
-                <h3 className="text-3xl font-bold text-white mb-6">"Tell me what I did yesterday"</h3>
-                <p className="text-lg text-gray-400 mb-6 leading-relaxed">
-                  Mirix automatically captures and organizes your daily activities, allowing you to easily recall 
-                  what you worked on, websites you visited, and conversations you had - all with natural language queries.
-                </p>
-                <div className="flex flex-wrap gap-3">
-                  <span className="px-4 py-2 bg-teal-500/20 text-teal-300 rounded-full text-sm">
-                    ⏰ Time-based queries
-                  </span>
-                  <span className="px-4 py-2 bg-blue-500/20 text-blue-300 rounded-full text-sm">
-                    📱 Activity tracking
-                  </span>
-                  <span className="px-4 py-2 bg-purple-500/20 text-purple-300 rounded-full text-sm">
-                    🔍 Advanced search
-                  </span>
-                </div>
+          <div className="grid grid-cols-1 lg:grid-cols-2 gap-16 items-center">
+            <div>
+              <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-blue-500/10 border border-blue-500/20 text-xs text-blue-400 font-medium mb-6">
+                FOR EVERYONE
               </div>
-              
-              <div className="lg:order-2">
-                <motion.div
-                  whileHover={{ scale: 1.05 }}
-                  transition={{ duration: 0.3 }}
-                >
-                  <img 
-                    src={img5} 
-                    alt="Daily Activity Recall Interface" 
-                    className="w-full h-auto rounded-2xl shadow-2xl border border-gray-600"
-                  />
-                </motion.div>
-              </div>
-            </motion.div>
-            
-            {/* Use Case 2 - Cover Letter */}
-            <motion.div 
-              className="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center"
-              initial={{ opacity: 0, y: 60 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true }}
-              transition={{ duration: 0.6, delay: 0.4 }}
-            >
-              <div className="lg:order-2">
-                <div className="inline-flex items-center gap-2 mb-6">
-                  <div className="w-3 h-3 bg-blue-500 rounded-full"></div>
-                  <span className="text-blue-400 font-semibold text-sm">CAREER ASSISTANCE</span>
-                </div>
-                <h3 className="text-3xl font-bold text-white mb-6">"Help me write a cover letter for Meta Research Scientist Application"</h3>
-                <p className="text-lg text-gray-400 mb-6 leading-relaxed">
-                  Leveraging your complete work history, skills, and experiences stored in memory, Mirix crafts 
-                  personalized, compelling cover letters that highlight your most relevant qualifications.
-                </p>
-                <div className="flex flex-wrap gap-3">
-                  <span className="px-4 py-2 bg-blue-500/20 text-blue-300 rounded-full text-sm">
-                    📝 Personalized writing
-                  </span>
-                  <span className="px-4 py-2 bg-green-500/20 text-green-300 rounded-full text-sm">
-                    💼 Career context
-                  </span>
-                  <span className="px-4 py-2 bg-purple-500/20 text-purple-300 rounded-full text-sm">
-                    🎯 Targeted content
-                  </span>
-                </div>
-              </div>
-              
-              <div className="lg:order-1">
-                <motion.div
-                  whileHover={{ scale: 1.05 }}
-                  transition={{ duration: 0.3 }}
-                >
-                  <img 
-                    src={img6} 
-                    alt="Cover Letter Writing Interface" 
-                    className="w-full h-auto rounded-2xl shadow-2xl border border-gray-600"
-                  />
-                </motion.div>
-              </div>
-            </motion.div>
-            
-            {/* Use Case 3 - Memory Tree Visualization */}
-            <motion.div 
-              className="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center"
-              initial={{ opacity: 0, y: 60 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true }}
-              transition={{ duration: 0.6, delay: 0.6 }}
-            >
-              <div className="lg:order-1">
-                <div className="inline-flex items-center gap-2 mb-6">
-                  <div className="w-3 h-3 bg-purple-500 rounded-full"></div>
-                  <span className="text-purple-400 font-semibold text-sm">MEMORY VISUALIZATION</span>
-                </div>
-                <h3 className="text-3xl font-bold text-white mb-6">Visualize your memory in tree structure</h3>
-                <p className="text-lg text-gray-400 mb-6 leading-relaxed">
-                  Explore and navigate your personal memory through an intuitive tree structure visualization. 
-                  See how your experiences, knowledge, and activities are interconnected in a beautiful, interactive interface.
-                </p>
-                <div className="flex flex-wrap gap-3">
-                  <span className="px-4 py-2 bg-purple-500/20 text-purple-300 rounded-full text-sm">
-                    🌳 Tree visualization
-                  </span>
-                  <span className="px-4 py-2 bg-green-500/20 text-green-300 rounded-full text-sm">
-                    🔗 Memory connections
-                  </span>
-                  <span className="px-4 py-2 bg-blue-500/20 text-blue-300 rounded-full text-sm">
-                    📊 Interactive interface
-                  </span>
-                </div>
-              </div>
-              
-              <div className="lg:order-2">
-                <motion.div
-                  whileHover={{ scale: 1.05 }}
-                  transition={{ duration: 0.3 }}
-                >
-                  <img 
-                    src={img3} 
-                    alt="Memory Tree Structure Visualization" 
-                    className="w-full h-auto rounded-2xl shadow-2xl border border-gray-600"
-                  />
-                </motion.div>
-              </div>
-            </motion.div>
-            
-            {/* Use Case 4 - Future Devices */}
-            <motion.div 
-              className="text-center"
-              initial={{ opacity: 0, y: 60 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true }}
-              transition={{ duration: 0.6, delay: 0.8 }}
-            >
-              <div className="inline-flex items-center gap-2 mb-6">
-                <div className="w-3 h-3 bg-yellow-500 rounded-full"></div>
-                <span className="text-yellow-400 font-semibold text-sm">UPCOMING FUNCTIONALITY</span>
-              </div>
-              <h3 className="text-3xl font-bold text-white mb-6">Intelligent Personal Assistants, Wearable Devices, & Robots</h3>
-              <p className="text-lg text-gray-400 mb-12 max-w-4xl mx-auto leading-relaxed">
-                The future of AI-powered devices with MIRIX memory system as the backend. Imagine intelligent assistants that remember 
-                your conversations, wearable devices that understand your habits, and robots that learn from your daily routines.
+              <h2 className="text-3xl md:text-4xl font-bold mb-6 tracking-tight">
+                Desktop Experience
+              </h2>
+              <p className="text-lg text-zinc-400 mb-8 leading-relaxed">
+                Visualize and manage your agent's memory with our native desktop application. Perfect for testing, debugging, and personal use.
               </p>
               
-              <div className="grid grid-cols-1 md:grid-cols-3 gap-8 max-w-4xl mx-auto">
-                <motion.div 
-                  className="bg-slate-800/30 rounded-2xl p-8 border border-gray-700"
-                  whileHover={{ scale: 1.05 }}
-                  transition={{ duration: 0.3 }}
-                >
-                  <div className="w-16 h-16 bg-gradient-to-r from-yellow-500 to-orange-500 rounded-full flex items-center justify-center mx-auto mb-6">
-                    <Zap className="w-8 h-8 text-white" />
+              <div className="space-y-6 mb-10">
+                <div className="flex gap-4">
+                  <div className="w-6 h-6 rounded-full bg-white/10 flex items-center justify-center shrink-0 text-white text-xs">1</div>
+                  <div>
+                    <h4 className="text-white font-medium mb-1">Visual Knowledge Graph</h4>
+                    <p className="text-sm text-zinc-500">Explore connections between memories in real-time.</p>
                   </div>
-                  <h4 className="text-xl font-bold text-white mb-4">Intelligent Personal Assistant</h4>
-                  <p className="text-gray-400 text-sm">Remembers your experiences and helps you throughout the day.</p>
-                </motion.div>
-                
-                <motion.div 
-                  className="bg-slate-800/30 rounded-2xl p-8 border border-gray-700"
-                  whileHover={{ scale: 1.05 }}
-                  transition={{ duration: 0.3 }}
-                >
-                  <div className="w-16 h-16 bg-gradient-to-r from-green-500 to-teal-500 rounded-full flex items-center justify-center mx-auto mb-6">
-                    <Clock className="w-8 h-8 text-white" />
+                </div>
+                <div className="flex gap-4">
+                  <div className="w-6 h-6 rounded-full bg-white/10 flex items-center justify-center shrink-0 text-white text-xs">2</div>
+                  <div>
+                    <h4 className="text-white font-medium mb-1">Personal Assistant Demo</h4>
+                    <p className="text-sm text-zinc-500">Interact with a memory-enabled agent out of the box.</p>
                   </div>
-                  <h4 className="text-xl font-bold text-white mb-4">Wearable Devices</h4>
-                  <p className="text-gray-400 text-sm">AI glasses, AI companions that can see what you see, becoming your real-world personal assistants.</p>
-                </motion.div>
-                
-                <motion.div 
-                  className="bg-slate-800/30 rounded-2xl p-8 border border-gray-700"
-                  whileHover={{ scale: 1.05 }}
-                  transition={{ duration: 0.3 }}
-                >
-                  <div className="w-16 h-16 bg-gradient-to-r from-purple-500 to-pink-500 rounded-full flex items-center justify-center mx-auto mb-6">
-                    <Settings className="w-8 h-8 text-white" />
+                </div>
+                <div className="flex gap-4">
+                  <div className="w-6 h-6 rounded-full bg-white/10 flex items-center justify-center shrink-0 text-white text-xs">3</div>
+                  <div>
+                    <h4 className="text-white font-medium mb-1">Local Data Management</h4>
+                    <p className="text-sm text-zinc-500">View, edit, and delete memory entries securely.</p>
                   </div>
-                  <h4 className="text-xl font-bold text-white mb-4">Smart Robots</h4>
-                  <p className="text-gray-400 text-sm">Household and service robots that can live in the society</p>
-                </motion.div>
+                </div>
               </div>
-            </motion.div>
+
+              <div className="flex flex-col sm:flex-row gap-4">
+                <a
+                  href="https://github.com/Mirix-AI/MIRIX/releases/download/v0.1.3/MIRIX-0.1.3-arm64.dmg"
+                  className="bg-white text-black px-6 py-3 rounded font-medium text-sm hover:bg-zinc-200 transition-colors text-center"
+                >
+                  Download for macOS
+                </a>
+                <div className="flex items-center justify-center gap-2 text-zinc-500 text-sm">
+                  <AppleIcon />
+                  <span>Apple Silicon only</span>
+                </div>
+              </div>
+            </div>
+
+            <div className="relative group">
+              <div className="absolute -inset-1 bg-gradient-to-r from-blue-500 to-purple-600 rounded-2xl opacity-20 group-hover:opacity-30 blur transition duration-1000"></div>
+              <div className="relative rounded-xl bg-[#0A0A0A] border border-white/10 shadow-2xl overflow-hidden">
+                <img 
+                  src={img0}
+                  alt="Mirix Desktop App"
+                  className="w-full opacity-90 hover:opacity-100 transition-opacity"
+                />
+              </div>
+            </div>
           </div>
         </div>
       </section>
 
+      {/* Use Cases */}
+      <section id="use-cases" className="py-32 px-4">
+        <div className="max-w-7xl mx-auto">
+          <h2 className="text-3xl md:text-4xl font-bold text-center mb-16">Powering the Next Generation</h2>
+
+          <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
+            <UseCaseCard 
+              icon={<Brain className="w-5 h-5" />}
+              title="True Personalization"
+              description="Agents that learn from every interaction. Create companions that remember specific user details without hallucination."
+            />
+            <UseCaseCard 
+              icon={<Clock className="w-5 h-5" />}
+              title="Long-horizon Planning"
+              description="Enable agents to execute complex tasks over days or weeks. Mirix stores the state needed to resume work seamlessly."
+            />
+            <UseCaseCard 
+              icon={<Database className="w-5 h-5" />}
+              title="Semantic Knowledge"
+              description="Beyond simple logs. Mirix constructs a knowledge graph, allowing agents to reason over past information effectively."
+            />
+          </div>
+
+          {/* Vision badges */}
+          <div className="mt-24 flex flex-wrap justify-center gap-3">
+            {['Wearable Devices', 'Home Robotics', 'Virtual Companions', 'Enterprise Assistants'].map((item) => (
+              <span key={item} className="px-4 py-2 rounded-full bg-white/5 border border-white/10 text-zinc-400 text-sm">
+                {item}
+              </span>
+            ))}
+          </div>
+        </div>
+      </section>
 
       {/* Footer */}
-      <footer className="py-12 px-4 border-t border-gray-800">
-        <div className="max-w-7xl mx-auto text-center">
-          <div className="flex justify-center items-center gap-8 mb-8">
-            <a href="https://github.com/Mirix-AI/Mirix" className="text-gray-400 hover:text-white transition-colors">
-              <Github className="w-6 h-6" />
-            </a>
-            <a href="mailto:yuw164@ucsd.edu" className="text-gray-400 hover:text-white transition-colors">
-              Contact
-            </a>
+      <footer className="py-12 px-4 border-t border-white/5 bg-[#050505]">
+        <div className="max-w-7xl mx-auto flex flex-col md:flex-row justify-between items-center gap-6">
+          <div className="flex items-center gap-2">
+            <div className="w-5 h-5 bg-white rounded-sm flex items-center justify-center text-black font-bold text-[10px]">
+              M
+            </div>
+            <span className="font-semibold text-white">MIRIX</span>
           </div>
-          <p className="text-gray-500">
-            © 2025 Mirix AI. Released under the MIT License.
-          </p>
-          <p className="text-gray-600 mt-2">
-            Built with ❤️ for the future of LLM agent memory systems
-          </p>
+          
+          <div className="flex gap-8 text-sm text-zinc-500">
+            <a href="https://github.com/Mirix-AI/Mirix" className="hover:text-white transition-colors">GitHub</a>
+            <a href="mailto:yuw164@ucsd.edu" className="hover:text-white transition-colors">Contact</a>
+            <Link to="/blog" className="hover:text-white transition-colors">Blog</Link>
+          </div>
+
+          <div className="text-zinc-600 text-sm">
+            © 2025 Mirix AI
+          </div>
         </div>
       </footer>
     </div>
+  );
+}
+
+function UseCaseCard({ icon, title, description }: { icon: React.ReactNode, title: string, description: string }) {
+  return (
+    <div className="p-8 rounded-xl border border-white/5 bg-white/[0.02] hover:bg-white/[0.04] transition-colors">
+      <div className="w-10 h-10 rounded bg-white/5 flex items-center justify-center mb-6 text-zinc-200">
+        {icon}
+      </div>
+      <h3 className="text-lg font-bold text-white mb-3">{title}</h3>
+      <p className="text-zinc-400 text-sm leading-relaxed">
+        {description}
+      </p>
+    </div>
+  );
+}
+
+function AppleIcon() {
+  return (
+    <svg className="w-4 h-4" viewBox="0 0 24 24" fill="currentColor">
+      <path d="M17.3,11.8c0.1-2.6,2.1-3.8,2.2-3.9c-1.2-1.7-3-1.9-3.6-2c-1.5-0.2-3,0.9-3.8,0.9c-0.8,0-2-0.9-3.3-0.9 c-1.7,0-3.3,1-4.2,2.5c-1.8,3.1-0.5,7.8,1.3,10.3c0.9,1.2,1.9,2.6,3.3,2.5c1.3-0.1,1.8-0.8,3.4-0.8c1.6,0,2,0.8,3.4,0.8 c1.4,0,2.3-1.2,3.2-2.5c1-1.4,1.4-2.8,1.4-2.9C20.4,14.8,17.2,13.7,17.3,11.8z M13,5.1C13.7,4.2,14.1,3,14,1.8 c-1.1,0-2.5,0.8-3.3,1.7c-0.7,0.9-1.4,2.2-1.2,3.4C10.7,7,12.2,6.1,13,5.1z" />
+    </svg>
   );
 }
 
