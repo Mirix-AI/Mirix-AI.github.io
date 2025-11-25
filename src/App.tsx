@@ -4,25 +4,18 @@ import { motion } from 'framer-motion';
 import { 
   Brain, 
   Database, 
-  Lock, 
-  Zap,
   Clock,
-  Settings,
   ArrowRight,
   Github,
-  Download,
   Code,
   Layers,
   Cpu,
   Shield,
   Terminal,
-  ChevronRight,
   Command
 } from 'lucide-react';
 import './App.css';
 import img0 from './assets/img0.png';
-import img1 from './assets/img1.png';
-import img3 from './assets/img3.png';
 
 function App() {
   const [isNavVisible, setIsNavVisible] = useState(true);
@@ -272,7 +265,7 @@ client.add(messages=[<br/>
                 <p className="text-zinc-400 mb-6 text-sm leading-relaxed max-w-md">
                   Enhance your LangGraph workflows with stateful memory. Build complex, multi-step agents that maintain context.
                 </p>
-                <a href="#" className="inline-flex items-center text-sm text-white border border-white/20 rounded px-4 py-2 hover:bg-white/10 transition-colors">
+                <a href="https://docs.mirix.io" target="_blank" rel="noopener noreferrer" className="inline-flex items-center text-sm text-white border border-white/20 rounded px-4 py-2 hover:bg-white/10 transition-colors">
                   View Docs
                 </a>
               </div>
