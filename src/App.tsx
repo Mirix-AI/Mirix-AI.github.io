@@ -378,11 +378,12 @@ client.add(messages=[<br/>
       {/* Footer */}
       <footer className="py-12 px-4 border-t border-white/5 bg-[#050505]">
         <div className="max-w-7xl mx-auto flex flex-col md:flex-row justify-between items-center gap-6">
-          <div className="flex items-center gap-2">
-            <div className="w-5 h-5 bg-white rounded-sm flex items-center justify-center text-black font-bold text-[10px]">
-              M
-            </div>
-            <span className="font-semibold text-white">MIRIX</span>
+          <div className="flex items-center">
+            <img 
+              src="/logo.png" 
+              alt="MIRIX Logo"
+              className="h-8 rounded"
+            />
           </div>
           
           <div className="flex gap-8 text-sm text-zinc-500">
@@ -392,7 +393,7 @@ client.add(messages=[<br/>
           </div>
 
           <div className="text-zinc-600 text-sm">
-            © 2025 Mirix AI
+            © 2025 MIRIX AI
           </div>
         </div>
       </footer>
