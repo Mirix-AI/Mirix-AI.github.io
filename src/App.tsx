@@ -16,6 +16,7 @@ import {
 } from 'lucide-react';
 import './App.css';
 import img0 from './assets/img0.png';
+import intuitLogo from './assets/Intuit_Logo.svg.png';
 
 function App() {
   const [isNavVisible, setIsNavVisible] = useState(true);
@@ -110,7 +111,7 @@ function App() {
               <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-green-400 opacity-75"></span>
               <span className="relative inline-flex rounded-full h-2 w-2 bg-green-500"></span>
             </span>
-            v0.1.3 is now available
+            MIRIX API is now available
           </motion.div>
 
           <motion.h1 
@@ -136,7 +137,7 @@ function App() {
           </motion.p>
           
           <motion.div 
-            className="flex flex-col sm:flex-row gap-4 justify-center items-center mb-20"
+            className="flex flex-col sm:flex-row gap-4 justify-center items-center mb-12"
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.5, delay: 0.3 }}
@@ -149,6 +150,29 @@ function App() {
               <Github className="w-4 h-4" />
               Star on GitHub
             </a>
+          </motion.div>
+
+          {/* Enterprise Contributors - Hero Integration */}
+          <motion.div
+            initial={{ opacity: 0 }}
+            animate={{ opacity: 1 }}
+            transition={{ duration: 0.5, delay: 0.4 }}
+            className="flex flex-col items-center mb-16"
+          >
+            <p className="text-[10px] md:text-xs text-zinc-500 uppercase tracking-[0.2em] mb-4 font-semibold">
+              Enterprise Contributors
+            </p>
+            <div className="flex items-center gap-3">
+              <img 
+                src={intuitLogo} 
+                alt="Intuit" 
+                className="h-6 md:h-7 opacity-70 hover:opacity-100 transition-opacity brightness-0 invert"
+              />
+              <div className="h-4 w-[1px] bg-white/10 mx-2" />
+              <p className="text-xs md:text-sm text-zinc-400">
+                Open Source Contributions from Intuit Engineers
+              </p>
+            </div>
           </motion.div>
 
           {/* Code Preview / Visual */}
@@ -167,18 +191,61 @@ function App() {
             <div className="p-6 text-left overflow-x-auto">
               <pre className="text-sm font-mono leading-relaxed text-zinc-300">
                 <code>
-<span className="text-zinc-500"># Original code:</span><br/>
-<span className="text-zinc-500"># response = agent.query(message)</span><br/><br/>
-<span className="text-purple-400">from</span> mirix <span className="text-purple-400">import</span> MemoryClient<br/>
-client = MemoryClient(local=<span className="text-orange-400">True</span>)<br/><br/>
-<span className="text-zinc-500"># 1. Inject relevant context into the prompt</span><br/>
-message = client.wrap_message(message)<br/>
-response = agent.query(message)<br/><br/>
-<span className="text-zinc-500"># 2. Save the interaction</span><br/>
-client.add(messages=[<br/>
-&nbsp;&nbsp;{'{'}<span className="text-green-400">"role"</span>: <span className="text-green-400">"user"</span>, <span className="text-green-400">"content"</span>: [{'{'}<span className="text-green-400">"type"</span>: <span className="text-green-400">"text"</span>, <span className="text-green-400">"text"</span>: message{'}'}]{'}'},<br/>
-&nbsp;&nbsp;{'{'}<span className="text-green-400">"role"</span>: <span className="text-green-400">"assistant"</span>, <span className="text-green-400">"content"</span>: [{'{'}<span className="text-green-400">"type"</span>: <span className="text-green-400">"text"</span>, <span className="text-green-400">"text"</span>: response{'}'}]{'}'}<br/>
-])
+<span className="text-purple-400">from</span> mirix <span className="text-purple-400">import</span> MirixClient<br/><br/>
+client = MirixClient(<br/>
+&nbsp;&nbsp;api_key=<span className="text-green-400">"your-api-key"</span>,<br/>
+&nbsp;&nbsp;base_url=<span className="text-green-400">"http://localhost:8531"</span>,<br/>
+)<br/><br/>
+client.initialize_meta_agent(<br/>
+&nbsp;&nbsp;config={'{'}<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<span className="text-green-400">"llm_config"</span>: {'{'}<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span className="text-green-400">"model"</span>: <span className="text-green-400">"gemini-2.0-flash"</span>,<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span className="text-green-400">"model_endpoint_type"</span>: <span className="text-green-400">"google_ai"</span>,<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span className="text-green-400">"api_key"</span>: <span className="text-green-400">"your-api-key-here"</span>,<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span className="text-green-400">"model_endpoint"</span>: <span className="text-green-400">"https://generativelanguage.googleapis.com"</span>,<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span className="text-green-400">"context_window"</span>: <span className="text-orange-400">1_000_000</span>,<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;{'}'},<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<span className="text-green-400">"embedding_config"</span>: {'{'}<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span className="text-green-400">"embedding_model"</span>: <span className="text-green-400">"text-embedding-004"</span>,<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span className="text-green-400">"embedding_endpoint_type"</span>: <span className="text-green-400">"google_ai"</span>,<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span className="text-green-400">"api_key"</span>: <span className="text-green-400">"your-api-key-here"</span>,<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span className="text-green-400">"embedding_endpoint"</span>: <span className="text-green-400">"https://generativelanguage.googleapis.com"</span>,<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span className="text-green-400">"embedding_dim"</span>: <span className="text-orange-400">768</span>,<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;{'}'},<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<span className="text-green-400">"meta_agent_config"</span>: {'{'}<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span className="text-green-400">"agents"</span>: [<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;{'{'}<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span className="text-green-400">"core_memory_agent"</span>: {'{'}<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span className="text-green-400">"blocks"</span>: [<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;{'{'}<span className="text-green-400">"label"</span>: <span className="text-green-400">"human"</span>, <span className="text-green-400">"value"</span>: <span className="text-green-400">""</span>{'}'},<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;{'{'}<span className="text-green-400">"label"</span>: <span className="text-green-400">"persona"</span>, <span className="text-green-400">"value"</span>: <span className="text-green-400">"I am a helpful assistant."</span>{'}'},<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;]<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;{'}'}<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;{'}'},<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span className="text-green-400">"resource_memory_agent"</span>,<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span className="text-green-400">"semantic_memory_agent"</span>,<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span className="text-green-400">"episodic_memory_agent"</span>,<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span className="text-green-400">"procedural_memory_agent"</span>,<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span className="text-green-400">"knowledge_vault_memory_agent"</span>,<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;],<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;{'}'},<br/>
+&nbsp;&nbsp;{'}'}<br/>
+)<br/><br/>
+client.add(<br/>
+&nbsp;&nbsp;user_id=<span className="text-green-400">"demo-user"</span>,<br/>
+&nbsp;&nbsp;messages=[<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;{'{'}<span className="text-green-400">"role"</span>: <span className="text-green-400">"user"</span>, <span className="text-green-400">"content"</span>: [{'{'}<span className="text-green-400">"type"</span>: <span className="text-green-400">"text"</span>, <span className="text-green-400">"text"</span>: <span className="text-green-400">"The moon now has a president."</span>{'}'}]{'}'},<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;{'{'}<span className="text-green-400">"role"</span>: <span className="text-green-400">"assistant"</span>, <span className="text-green-400">"content"</span>: [{'{'}<span className="text-green-400">"type"</span>: <span className="text-green-400">"text"</span>, <span className="text-green-400">"text"</span>: <span className="text-green-400">"Noted."</span>{'}'}]{'}'},<br/>
+&nbsp;&nbsp;],<br/>
+)<br/><br/>
+memories = client.retrieve_with_conversation(<br/>
+&nbsp;&nbsp;user_id=<span className="text-green-400">"demo-user"</span>,<br/>
+&nbsp;&nbsp;messages=[<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;{'{'}<span className="text-green-400">"role"</span>: <span className="text-green-400">"user"</span>, <span className="text-green-400">"content"</span>: [{'{'}<span className="text-green-400">"type"</span>: <span className="text-green-400">"text"</span>, <span className="text-green-400">"text"</span>: <span className="text-green-400">"What did we discuss on MirixDB in last 4 days?"</span>{'}'}]{'}'},<br/>
+&nbsp;&nbsp;],<br/>
+&nbsp;&nbsp;limit=<span className="text-orange-400">5</span>,<br/>
+)<br/><br/>
+<span className="text-purple-400">print</span>(memories)
                 </code>
               </pre>
             </div>
