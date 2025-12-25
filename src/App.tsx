@@ -224,6 +224,16 @@ client.add(<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;{'{'}<span className="text-green-400">"role"</span>: <span className="text-green-400">"assistant"</span>, <span className="text-green-400">"content"</span>: [{'{'}<span className="text-green-400">"type"</span>: <span className="text-green-400">"text"</span>, <span className="text-green-400">"text"</span>: <span className="text-green-400">"Noted."</span>{'}'}]{'}'},<br/>
 &nbsp;&nbsp;],<br/>
 )
+<br/><br/>
+<span className="text-gray-500"># Add the following at each step of your conversation (high-level search, ultra fast)</span><br/>
+memories = client.retrieve_with_conversation(<br/>
+&nbsp;&nbsp;messages=[<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;{'{'}<span className="text-green-400">"role"</span>: <span className="text-green-400">"user"</span>, <span className="text-green-400">"content"</span>: [{'{'}<span className="text-green-400">"type"</span>: <span className="text-green-400">"text"</span>, <span className="text-green-400">"text"</span>: <span className="text-green-400">"What did we discuss about MirixDB over the last 4 days?"</span>{'}'}]{'}'},<br/>
+&nbsp;&nbsp;],<br/>
+)<br/>
+print(memories)<br/><br/>
+<span className="text-gray-500"># Optionally, use embedding search for more detailed (but slower) retrieval</span><br/>
+memories = client.search(memory_type=<span className="text-green-400">"episodic"</span>, search_field=<span className="text-green-400">"summary"</span>, search_method=<span className="text-green-400">"embedding"</span>)
                 </code>
               </pre>
             </div>
