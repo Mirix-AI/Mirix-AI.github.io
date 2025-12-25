@@ -15,7 +15,8 @@ import {
   Command
 } from 'lucide-react';
 import './App.css';
-import img0 from './assets/img0.png';
+import img7 from './assets/img7.png';
+import img8 from './assets/img8.png';
 import intuitLogo from './assets/Intuit_Logo.svg.png';
 
 function App() {
@@ -88,10 +89,10 @@ function App() {
             {/* CTA */}
             <div className="flex items-center justify-end">
               <a
-                href="https://github.com/Mirix-AI/MIRIX/releases/download/v0.1.3/MIRIX-0.1.3-arm64.dmg"
+                href="https://app.mirix.io"
                 className="bg-white text-black px-4 py-1.5 rounded text-sm font-medium hover:bg-zinc-200 transition-colors"
               >
-                Download App
+                Get Started with Cloud Version
               </a>
             </div>
           </div>
@@ -133,7 +134,7 @@ function App() {
             transition={{ duration: 0.5, delay: 0.2 }}
           >
             Infrastructure for persistent, private, and intelligent agent memory.
-            Open-source SDK for developers. Desktop app for everyone.
+            Open-source SDK for developers. Dashboard at app.mirix.io for setup.
           </motion.p>
           
           <motion.div 
@@ -142,15 +143,18 @@ function App() {
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.5, delay: 0.3 }}
           >
-            <a href="https://docs.mirix.io/" target="_blank" rel="noopener noreferrer" className="h-12 px-6 rounded bg-white text-black font-medium flex items-center gap-2 hover:bg-zinc-200 transition-colors">
+            <a href="https://app.mirix.io" target="_blank" rel="noopener noreferrer" className="h-12 px-6 rounded bg-white text-black font-medium flex items-center gap-2 hover:bg-zinc-200 transition-colors">
               <Terminal className="w-4 h-4" />
-              Get Started with SDK
+              Get Started with Cloud Version
             </a>
             <a href="https://github.com/Mirix-AI/MIRIX" target="_blank" rel="noopener noreferrer" className="h-12 px-6 rounded bg-zinc-900 border border-zinc-800 text-white font-medium flex items-center gap-2 hover:bg-zinc-800 transition-colors">
               <Github className="w-4 h-4" />
-              Star on GitHub
+              Deploy Local Version
             </a>
           </motion.div>
+          <p className="text-xs text-zinc-500">
+            v0.1.4 deprecates the desktop agent and focuses on memory systems for all kinds of agents.
+          </p>
 
           {/* Enterprise Contributors - Hero Integration */}
           <motion.div
@@ -192,60 +196,19 @@ function App() {
               <pre className="text-sm font-mono leading-relaxed text-zinc-300">
                 <code>
 <span className="text-purple-400">from</span> mirix <span className="text-purple-400">import</span> MirixClient<br/><br/>
-client = MirixClient(<br/>
-&nbsp;&nbsp;api_key=<span className="text-green-400">"your-api-key"</span>,<br/>
-&nbsp;&nbsp;base_url=<span className="text-green-400">"http://localhost:8531"</span>,<br/>
-)<br/><br/>
+client = MirixClient(api_key=<span className="text-green-400">"your_api_key_here"</span>)<br/>
+<span className="text-gray-500"># or set MIRIX_API_KEY in your environment, then use: client = MirixClient()</span><br/><br/>
 client.initialize_meta_agent(<br/>
-&nbsp;&nbsp;config={'{'}<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;<span className="text-green-400">"llm_config"</span>: {'{'}<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span className="text-green-400">"model"</span>: <span className="text-green-400">"gemini-2.0-flash"</span>,<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span className="text-green-400">"model_endpoint_type"</span>: <span className="text-green-400">"google_ai"</span>,<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span className="text-green-400">"api_key"</span>: <span className="text-green-400">"your-api-key-here"</span>,<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span className="text-green-400">"model_endpoint"</span>: <span className="text-green-400">"https://generativelanguage.googleapis.com"</span>,<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span className="text-green-400">"context_window"</span>: <span className="text-orange-400">1_000_000</span>,<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;{'}'},<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;<span className="text-green-400">"embedding_config"</span>: {'{'}<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span className="text-green-400">"embedding_model"</span>: <span className="text-green-400">"text-embedding-004"</span>,<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span className="text-green-400">"embedding_endpoint_type"</span>: <span className="text-green-400">"google_ai"</span>,<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span className="text-green-400">"api_key"</span>: <span className="text-green-400">"your-api-key-here"</span>,<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span className="text-green-400">"embedding_endpoint"</span>: <span className="text-green-400">"https://generativelanguage.googleapis.com"</span>,<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span className="text-green-400">"embedding_dim"</span>: <span className="text-orange-400">768</span>,<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;{'}'},<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;<span className="text-green-400">"meta_agent_config"</span>: {'{'}<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span className="text-green-400">"agents"</span>: [<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;{'{'}<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span className="text-green-400">"core_memory_agent"</span>: {'{'}<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span className="text-green-400">"blocks"</span>: [<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;{'{'}<span className="text-green-400">"label"</span>: <span className="text-green-400">"human"</span>, <span className="text-green-400">"value"</span>: <span className="text-green-400">""</span>{'}'},<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;{'{'}<span className="text-green-400">"label"</span>: <span className="text-green-400">"persona"</span>, <span className="text-green-400">"value"</span>: <span className="text-green-400">"I am a helpful assistant."</span>{'}'},<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;]<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;{'}'}<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;{'}'},<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span className="text-green-400">"resource_memory_agent"</span>,<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span className="text-green-400">"semantic_memory_agent"</span>,<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span className="text-green-400">"episodic_memory_agent"</span>,<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span className="text-green-400">"procedural_memory_agent"</span>,<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span className="text-green-400">"knowledge_vault_memory_agent"</span>,<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;],<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;{'}'},<br/>
-&nbsp;&nbsp;{'}'}<br/>
-)<br/><br/>
+&nbsp;&nbsp;provider=<span className="text-green-400">"openai"</span><br/>
+)&nbsp;&nbsp;<span className="text-gray-500"># See configs in mirix/configs/examples/mirix_openai.yaml</span><br/><br/>
+<span className="text-gray-500"># Simple add example</span><br/>
 client.add(<br/>
 &nbsp;&nbsp;user_id=<span className="text-green-400">"demo-user"</span>,<br/>
 &nbsp;&nbsp;messages=[<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;{'{'}<span className="text-green-400">"role"</span>: <span className="text-green-400">"user"</span>, <span className="text-green-400">"content"</span>: [{'{'}<span className="text-green-400">"type"</span>: <span className="text-green-400">"text"</span>, <span className="text-green-400">"text"</span>: <span className="text-green-400">"The moon now has a president."</span>{'}'}]{'}'},<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;{'{'}<span className="text-green-400">"role"</span>: <span className="text-green-400">"assistant"</span>, <span className="text-green-400">"content"</span>: [{'{'}<span className="text-green-400">"type"</span>: <span className="text-green-400">"text"</span>, <span className="text-green-400">"text"</span>: <span className="text-green-400">"Noted."</span>{'}'}]{'}'},<br/>
 &nbsp;&nbsp;],<br/>
-)<br/><br/>
-memories = client.retrieve_with_conversation(<br/>
-&nbsp;&nbsp;user_id=<span className="text-green-400">"demo-user"</span>,<br/>
-&nbsp;&nbsp;messages=[<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;{'{'}<span className="text-green-400">"role"</span>: <span className="text-green-400">"user"</span>, <span className="text-green-400">"content"</span>: [{'{'}<span className="text-green-400">"type"</span>: <span className="text-green-400">"text"</span>, <span className="text-green-400">"text"</span>: <span className="text-green-400">"What did we discuss on MirixDB in last 4 days?"</span>{'}'}]{'}'},<br/>
-&nbsp;&nbsp;],<br/>
-&nbsp;&nbsp;limit=<span className="text-orange-400">5</span>,<br/>
-)<br/><br/>
-<span className="text-purple-400">print</span>(memories)
+)
                 </code>
               </pre>
             </div>
@@ -285,6 +248,126 @@ memories = client.retrieve_with_conversation(<br/>
               <p className="text-zinc-400 text-sm leading-relaxed">
                 Optimized retrieval algorithms ensure your agents get the exact context they need with minimal latency.
               </p>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      {/* App Showcase Section */}
+      <section id="app" className="py-32 px-4 bg-zinc-900/30 border-b border-white/5">
+        <div className="max-w-7xl mx-auto">
+          <div className="grid grid-cols-1 lg:grid-cols-2 gap-16 items-center">
+            <div>
+              <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-blue-500/10 border border-blue-500/20 text-xs text-blue-400 font-medium mb-6">
+                FOR EVERYONE
+              </div>
+              <h2 className="text-3xl md:text-4xl font-bold mb-6 tracking-tight">
+                Dashboard Experience
+              </h2>
+              <p className="text-lg text-zinc-400 mb-8 leading-relaxed">
+                Set up projects, manage users, and monitor memory operations from the web dashboard at app.mirix.io.
+              </p>
+              
+              <div className="space-y-6 mb-10">
+                <div className="flex gap-4">
+                  <div className="w-6 h-6 rounded-full bg-white/10 flex items-center justify-center shrink-0 text-white text-xs">1</div>
+                  <div>
+                    <h4 className="text-white font-medium mb-1">Project Setup</h4>
+                    <p className="text-sm text-zinc-500">Create environments and get your API keys in minutes.</p>
+                  </div>
+                </div>
+                <div className="flex gap-4">
+                  <div className="w-6 h-6 rounded-full bg-white/10 flex items-center justify-center shrink-0 text-white text-xs">2</div>
+                  <div>
+                    <h4 className="text-white font-medium mb-1">Memory Operations</h4>
+                    <p className="text-sm text-zinc-500">Track write, retrieve, and update activity in one place.</p>
+                  </div>
+                </div>
+                <div className="flex gap-4">
+                  <div className="w-6 h-6 rounded-full bg-white/10 flex items-center justify-center shrink-0 text-white text-xs">3</div>
+                  <div>
+                    <h4 className="text-white font-medium mb-1">Local or Hosted</h4>
+                    <p className="text-sm text-zinc-500">Deploy locally via GitHub or use the hosted dashboard.</p>
+                  </div>
+                </div>
+              </div>
+
+              <div className="flex flex-col sm:flex-row gap-4">
+                <a
+                  href="https://app.mirix.io"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="bg-white text-black px-6 py-3 rounded font-medium text-sm hover:bg-zinc-200 transition-colors text-center"
+                >
+                  Get Started with Cloud Version
+                </a>
+                <a
+                  href="https://github.com/Mirix-AI/MIRIX"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="bg-zinc-900 border border-zinc-800 text-white px-6 py-3 rounded font-medium text-sm hover:bg-zinc-800 transition-colors text-center"
+                >
+                  Deploy Local Version
+                </a>
+              </div>
+            </div>
+
+            <div className="relative group">
+              <div className="absolute -inset-1 bg-gradient-to-r from-blue-500 to-purple-600 rounded-2xl opacity-20 group-hover:opacity-30 blur transition duration-1000"></div>
+              <div className="relative rounded-xl bg-[#0A0A0A] border border-white/10 shadow-2xl overflow-hidden">
+                <img 
+                  src={img7}
+                  alt="Mirix Dashboard Homepage"
+                  className="w-full opacity-90 hover:opacity-100 transition-opacity"
+                />
+              </div>
+            </div>
+          </div>
+
+          {/* Memory Traces Section */}
+          <div className="grid grid-cols-1 lg:grid-cols-2 gap-16 items-center mt-32">
+            <div className="order-2 lg:order-1 relative group">
+              <div className="absolute -inset-1 bg-gradient-to-r from-purple-500 to-blue-600 rounded-2xl opacity-20 group-hover:opacity-30 blur transition duration-1000"></div>
+              <div className="relative rounded-xl bg-[#0A0A0A] border border-white/10 shadow-2xl overflow-hidden">
+                <img 
+                  src={img8}
+                  alt="Mirix Memory Traces"
+                  className="w-full opacity-90 hover:opacity-100 transition-opacity"
+                />
+              </div>
+            </div>
+
+            <div className="order-1 lg:order-2">
+              <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-purple-500/10 border border-purple-500/20 text-xs text-purple-400 font-medium mb-6">
+                OBSERVABILITY
+              </div>
+              <h2 className="text-3xl md:text-4xl font-bold mb-6 tracking-tight">
+                Deep Memory Observability
+              </h2>
+              <p className="text-lg text-zinc-400 mb-8 leading-relaxed">
+                Inspect every memory operation in real-time. Track queue requests, memory updates, and parallel execution traces for complete transparency.
+              </p>
+              
+              <div className="space-y-6">
+                <div className="flex gap-4">
+                  <div className="w-6 h-6 rounded-full bg-white/10 flex items-center justify-center shrink-0 text-white text-xs">
+                    <Database className="w-3 h-3" />
+                  </div>
+                  <div>
+                    <h4 className="text-white font-medium mb-1">Execution Traces</h4>
+                    <p className="text-sm text-zinc-500">See exactly how memories are processed across different modules.</p>
+                  </div>
+                </div>
+                <div className="flex gap-4">
+                  <div className="w-6 h-6 rounded-full bg-white/10 flex items-center justify-center shrink-0 text-white text-xs">
+                    <Clock className="w-3 h-3" />
+                  </div>
+                  <div>
+                    <h4 className="text-white font-medium mb-1">Status Tracking</h4>
+                    <p className="text-sm text-zinc-500">Monitor success rates and processing times for every request.</p>
+                  </div>
+                </div>
+              </div>
             </div>
           </div>
         </div>
@@ -335,73 +418,6 @@ memories = client.retrieve_with_conversation(<br/>
                 <a href="https://docs.mirix.io" target="_blank" rel="noopener noreferrer" className="inline-flex items-center text-sm text-white border border-white/20 rounded px-4 py-2 hover:bg-white/10 transition-colors">
                   View Docs
                 </a>
-              </div>
-            </div>
-          </div>
-        </div>
-      </section>
-
-      {/* App Showcase Section */}
-      <section id="app" className="py-32 px-4 bg-zinc-900/30 border-b border-white/5">
-        <div className="max-w-7xl mx-auto">
-          <div className="grid grid-cols-1 lg:grid-cols-2 gap-16 items-center">
-            <div>
-              <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-blue-500/10 border border-blue-500/20 text-xs text-blue-400 font-medium mb-6">
-                FOR EVERYONE
-              </div>
-              <h2 className="text-3xl md:text-4xl font-bold mb-6 tracking-tight">
-                Desktop Experience
-              </h2>
-              <p className="text-lg text-zinc-400 mb-8 leading-relaxed">
-                Visualize and manage your agent's memory with our native desktop application. Perfect for testing, debugging, and personal use.
-              </p>
-              
-              <div className="space-y-6 mb-10">
-                <div className="flex gap-4">
-                  <div className="w-6 h-6 rounded-full bg-white/10 flex items-center justify-center shrink-0 text-white text-xs">1</div>
-                  <div>
-                    <h4 className="text-white font-medium mb-1">Visual Knowledge Graph</h4>
-                    <p className="text-sm text-zinc-500">Explore connections between memories in real-time.</p>
-                  </div>
-                </div>
-                <div className="flex gap-4">
-                  <div className="w-6 h-6 rounded-full bg-white/10 flex items-center justify-center shrink-0 text-white text-xs">2</div>
-                  <div>
-                    <h4 className="text-white font-medium mb-1">Personal Assistant Demo</h4>
-                    <p className="text-sm text-zinc-500">Interact with a memory-enabled agent out of the box.</p>
-                  </div>
-                </div>
-                <div className="flex gap-4">
-                  <div className="w-6 h-6 rounded-full bg-white/10 flex items-center justify-center shrink-0 text-white text-xs">3</div>
-                  <div>
-                    <h4 className="text-white font-medium mb-1">Local Data Management</h4>
-                    <p className="text-sm text-zinc-500">View, edit, and delete memory entries securely.</p>
-                  </div>
-                </div>
-              </div>
-
-              <div className="flex flex-col sm:flex-row gap-4">
-                <a
-                  href="https://github.com/Mirix-AI/MIRIX/releases/download/v0.1.3/MIRIX-0.1.3-arm64.dmg"
-                  className="bg-white text-black px-6 py-3 rounded font-medium text-sm hover:bg-zinc-200 transition-colors text-center"
-                >
-                  Download for macOS
-                </a>
-                <div className="flex items-center justify-center gap-2 text-zinc-500 text-sm">
-                  <AppleIcon />
-                  <span>Apple Silicon only</span>
-                </div>
-              </div>
-            </div>
-
-            <div className="relative group">
-              <div className="absolute -inset-1 bg-gradient-to-r from-blue-500 to-purple-600 rounded-2xl opacity-20 group-hover:opacity-30 blur transition duration-1000"></div>
-              <div className="relative rounded-xl bg-[#0A0A0A] border border-white/10 shadow-2xl overflow-hidden">
-                <img 
-                  src={img0}
-                  alt="Mirix Desktop App"
-                  className="w-full opacity-90 hover:opacity-100 transition-opacity"
-                />
               </div>
             </div>
           </div>
@@ -479,14 +495,6 @@ function UseCaseCard({ icon, title, description }: { icon: React.ReactNode, titl
         {description}
       </p>
     </div>
-  );
-}
-
-function AppleIcon() {
-  return (
-    <svg className="w-4 h-4" viewBox="0 0 24 24" fill="currentColor">
-      <path d="M17.3,11.8c0.1-2.6,2.1-3.8,2.2-3.9c-1.2-1.7-3-1.9-3.6-2c-1.5-0.2-3,0.9-3.8,0.9c-0.8,0-2-0.9-3.3-0.9 c-1.7,0-3.3,1-4.2,2.5c-1.8,3.1-0.5,7.8,1.3,10.3c0.9,1.2,1.9,2.6,3.3,2.5c1.3-0.1,1.8-0.8,3.4-0.8c1.6,0,2,0.8,3.4,0.8 c1.4,0,2.3-1.2,3.2-2.5c1-1.4,1.4-2.8,1.4-2.9C20.4,14.8,17.2,13.7,17.3,11.8z M13,5.1C13.7,4.2,14.1,3,14,1.8 c-1.1,0-2.5,0.8-3.3,1.7c-0.7,0.9-1.4,2.2-1.2,3.4C10.7,7,12.2,6.1,13,5.1z" />
-    </svg>
   );
 }
 
