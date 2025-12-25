@@ -63,10 +63,10 @@ function App() {
         }`}
       >
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="flex items-center justify-between h-14">
+          <div className="flex items-center h-14">
             {/* Logo */}
             <motion.div 
-              className="flex items-center cursor-pointer" 
+              className="flex flex-1 items-center cursor-pointer" 
               onClick={() => scrollToSection('hero')}
               whileHover={{ scale: 1.05 }}
             >
@@ -78,18 +78,16 @@ function App() {
             </motion.div>
 
             {/* Navigation Items */}
-            <div className="hidden md:flex items-center space-x-8">
-              <button onClick={() => scrollToSection('developers')} className="text-sm text-zinc-400 hover:text-white transition-colors">Developers</button>
-              <button onClick={() => scrollToSection('app')} className="text-sm text-zinc-400 hover:text-white transition-colors">App</button>
-              <button onClick={() => scrollToSection('use-cases')} className="text-sm text-zinc-400 hover:text-white transition-colors">Use Cases</button>
+            <div className="hidden md:flex flex-1 items-center justify-center space-x-8">
               <Link to="/blog" className="text-sm text-zinc-400 hover:text-white transition-colors">Blog</Link>
+              <a href="https://docs.mirix.io" target="_blank" rel="noopener noreferrer" className="text-sm text-zinc-400 hover:text-white transition-colors">Docs</a>
               <a href="https://github.com/Mirix-AI/MIRIX" target="_blank" rel="noopener noreferrer" className="text-sm text-zinc-400 hover:text-white transition-colors">GitHub</a>
             </div>
 
             {/* CTA */}
-            <div className="flex items-center justify-end">
+            <div className="flex flex-1 items-center justify-end">
               <a
-                href="https://app.mirix.io"
+                href="#agent-memory"
                 className="bg-white text-black px-4 py-1.5 rounded text-sm font-medium hover:bg-zinc-200 transition-colors"
               >
                 Get Started with Cloud Version
@@ -143,7 +141,7 @@ function App() {
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.5, delay: 0.3 }}
           >
-            <a href="https://app.mirix.io" target="_blank" rel="noopener noreferrer" className="h-12 px-6 rounded bg-white text-black font-medium flex items-center gap-2 hover:bg-zinc-200 transition-colors">
+            <a href="#agent-memory" className="h-12 px-6 rounded bg-white text-black font-medium flex items-center gap-2 hover:bg-zinc-200 transition-colors">
               <Terminal className="w-4 h-4" />
               Get Started with Cloud Version
             </a>
@@ -181,6 +179,7 @@ function App() {
 
           {/* Code Preview / Visual */}
           <motion.div 
+            id="agent-memory"
             className="relative max-w-4xl mx-auto rounded-xl border border-white/10 bg-[#0A0A0A] shadow-2xl overflow-hidden"
             initial={{ opacity: 0, y: 40 }}
             animate={{ opacity: 1, y: 0 }}
@@ -192,18 +191,34 @@ function App() {
               <div className="w-3 h-3 rounded-full bg-green-500/20 border border-green-500/50" />
               <div className="ml-4 text-xs text-zinc-500 font-mono">agent_memory.py</div>
             </div>
+            <div className="px-6 pt-5 text-left border-b border-white/5">
+              <p className="text-xs text-zinc-400 mb-2">Setup</p>
+              <div className="flex flex-col gap-2 text-xs text-zinc-500">
+                <div className="flex items-start gap-2">
+                  <span className="w-5 h-5 rounded-full bg-white/10 flex items-center justify-center shrink-0 text-[10px] text-white">1</span>
+                  <span className="font-mono text-zinc-300">pip install mirix==0.1.6</span>
+                </div>
+                <div className="flex items-start gap-2">
+                  <span className="w-5 h-5 rounded-full bg-white/10 flex items-center justify-center shrink-0 text-[10px] text-white">2</span>
+                  <span>
+                    Sign up at <a href="https://app.mirix.io" target="_blank" rel="noopener noreferrer" className="text-white hover:text-zinc-300 transition-colors">app.mirix.io</a> to get your API key.
+                  </span>
+                </div>
+                <div className="flex items-start gap-2 pb-5">
+                  <span className="w-5 h-5 rounded-full bg-white/10 flex items-center justify-center shrink-0 text-[10px] text-white">3</span>
+                  <span>Use the code below to create a client and add memory.</span>
+                </div>
+              </div>
+            </div>
             <div className="p-6 text-left overflow-x-auto">
               <pre className="text-sm font-mono leading-relaxed text-zinc-300">
                 <code>
 <span className="text-purple-400">from</span> mirix <span className="text-purple-400">import</span> MirixClient<br/><br/>
 client = MirixClient(api_key=<span className="text-green-400">"your_api_key_here"</span>)<br/>
 <span className="text-gray-500"># or set MIRIX_API_KEY in your environment, then use: client = MirixClient()</span><br/><br/>
-client.initialize_meta_agent(<br/>
-&nbsp;&nbsp;provider=<span className="text-green-400">"openai"</span><br/>
-)&nbsp;&nbsp;<span className="text-gray-500"># See configs in mirix/configs/examples/mirix_openai.yaml</span><br/><br/>
+client.initialize_meta_agent(provider=<span className="text-green-400">"openai"</span>)&nbsp;&nbsp;<br/><br/>
 <span className="text-gray-500"># Simple add example</span><br/>
 client.add(<br/>
-&nbsp;&nbsp;user_id=<span className="text-green-400">"demo-user"</span>,<br/>
 &nbsp;&nbsp;messages=[<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;{'{'}<span className="text-green-400">"role"</span>: <span className="text-green-400">"user"</span>, <span className="text-green-400">"content"</span>: [{'{'}<span className="text-green-400">"type"</span>: <span className="text-green-400">"text"</span>, <span className="text-green-400">"text"</span>: <span className="text-green-400">"The moon now has a president."</span>{'}'}]{'}'},<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;{'{'}<span className="text-green-400">"role"</span>: <span className="text-green-400">"assistant"</span>, <span className="text-green-400">"content"</span>: [{'{'}<span className="text-green-400">"type"</span>: <span className="text-green-400">"text"</span>, <span className="text-green-400">"text"</span>: <span className="text-green-400">"Noted."</span>{'}'}]{'}'},<br/>
@@ -294,9 +309,7 @@ client.add(<br/>
 
               <div className="flex flex-col sm:flex-row gap-4">
                 <a
-                  href="https://app.mirix.io"
-                  target="_blank"
-                  rel="noopener noreferrer"
+                  href="#agent-memory"
                   className="bg-white text-black px-6 py-3 rounded font-medium text-sm hover:bg-zinc-200 transition-colors text-center"
                 >
                   Get Started with Cloud Version
