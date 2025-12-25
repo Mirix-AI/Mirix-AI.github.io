@@ -220,8 +220,8 @@ client.initialize_meta_agent(provider=<span className="text-green-400">"openai"<
 <span className="text-gray-500"># Simple add example</span><br/>
 client.add(<br/>
 &nbsp;&nbsp;messages=[<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;{'{'}<span className="text-green-400">"role"</span>: <span className="text-green-400">"user"</span>, <span className="text-green-400">"content"</span>: [{'{'}<span className="text-green-400">"type"</span>: <span className="text-green-400">"text"</span>, <span className="text-green-400">"text"</span>: <span className="text-green-400">"The moon now has a president."</span>{'}'}]{'}'},<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;{'{'}<span className="text-green-400">"role"</span>: <span className="text-green-400">"assistant"</span>, <span className="text-green-400">"content"</span>: [{'{'}<span className="text-green-400">"type"</span>: <span className="text-green-400">"text"</span>, <span className="text-green-400">"text"</span>: <span className="text-green-400">"Noted."</span>{'}'}]{'}'},<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;{'{'}<span className="text-green-400">"role"</span>: <span className="text-green-400">"user"</span>, <span className="text-green-400">"content"</span>: [{'{'}<span className="text-green-400">"type"</span>: <span className="text-green-400">"text"</span>, <span className="text-green-400">"text"</span>: <span className="text-green-400">"We discussed MirixDB indexing performance and retention policies on Monday."</span>{'}'}]{'}'},<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;{'{'}<span className="text-green-400">"role"</span>: <span className="text-green-400">"assistant"</span>, <span className="text-green-400">"content"</span>: [{'{'}<span className="text-green-400">"type"</span>: <span className="text-green-400">"text"</span>, <span className="text-green-400">"text"</span>: <span className="text-green-400">"Noted. I will remember the MirixDB performance details."</span>{'}'}]{'}'},<br/>
 &nbsp;&nbsp;],<br/>
 )
 <br/><br/>
