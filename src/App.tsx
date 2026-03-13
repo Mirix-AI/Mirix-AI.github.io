@@ -110,7 +110,7 @@ function App() {
               <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-green-400 opacity-75"></span>
               <span className="relative inline-flex rounded-full h-2 w-2 bg-green-500"></span>
             </span>
-            MIRIX API is now available
+            MIRIX API + OpenClaw plugin now available
           </motion.div>
 
           <motion.h1 
@@ -434,13 +434,13 @@ memories = client.search(memory_type=<span className="text-green-400">"episodic"
                 <Command className="w-24 h-24" />
               </div>
               <div className="p-8 relative z-10">
-                <h3 className="text-xl font-bold text-white mb-3">LangGraph Support</h3>
+                <h3 className="text-xl font-bold text-white mb-3">OpenClaw Plugin Support</h3>
                 <p className="text-zinc-400 mb-6 text-sm leading-relaxed max-w-md">
-                  Enhance your LangGraph workflows with stateful memory. Build complex, multi-step agents that maintain context.
+                  Install <code>@mirix-ai/openclaw-mirix</code> to add MIRIX memory to OpenClaw agents with a simple CLI setup flow.
                 </p>
-                <a href="https://docs.mirix.io" target="_blank" rel="noopener noreferrer" className="inline-flex items-center text-sm text-white border border-white/20 rounded px-4 py-2 hover:bg-white/10 transition-colors">
-                  View Docs
-                </a>
+                <Link to="/blog/openclaw-mirix-plugin-setup" className="inline-flex items-center text-sm text-white border border-white/20 rounded px-4 py-2 hover:bg-white/10 transition-colors">
+                  Read Setup Guide
+                </Link>
               </div>
             </div>
           </div>

@@ -7,6 +7,15 @@ function Blog() {
   // Blog posts data
   const blogPosts = [
     {
+      id: 3,
+      title: "OpenClaw + MIRIX Plugin Setup",
+      excerpt: "Install the openclaw-mirix plugin in OpenClaw, configure your MIRIX_API_KEY, and enable memory-aware agent conversations in minutes.",
+      date: "2026-03-13",
+      author: "MIRIX Team",
+      image: "/openclaw-mirix.png",
+      slug: "openclaw-mirix-plugin-setup"
+    },
+    {
       id: 2,
       title: "Evaluating MIRIX System on MemoryAgentBench",
       excerpt: "This article introduces an evaluation of the MIRIX memory system on the comprehensive MemoryAgentBench, demonstrating that MIRIX's multi-agent framework significantly outperforms other RAG agents.",
