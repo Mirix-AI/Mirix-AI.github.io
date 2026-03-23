@@ -87,7 +87,9 @@ function App() {
             {/* CTA */}
             <div className="flex flex-1 items-center justify-end">
               <a
-                href="#agent-memory"
+                href="https://app.mirix.io"
+                target="_blank"
+                rel="noopener noreferrer"
                 className="bg-white text-black px-4 py-1.5 rounded text-sm font-medium hover:bg-zinc-200 transition-colors"
               >
                 Get Started with Cloud Version
@@ -141,7 +143,7 @@ function App() {
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.5, delay: 0.3 }}
           >
-            <a href="#agent-memory" className="h-12 px-6 rounded bg-white text-black font-medium flex items-center gap-2 hover:bg-zinc-200 transition-colors">
+            <a href="https://app.mirix.io" target="_blank" rel="noopener noreferrer" className="h-12 px-6 rounded bg-white text-black font-medium flex items-center gap-2 hover:bg-zinc-200 transition-colors">
               <Terminal className="w-4 h-4" />
               Get Started with Cloud Version
             </a>
@@ -319,7 +321,9 @@ memories = client.search(memory_type=<span className="text-green-400">"episodic"
 
               <div className="flex flex-col sm:flex-row gap-4">
                 <a
-                  href="#agent-memory"
+                  href="https://app.mirix.io"
+                  target="_blank"
+                  rel="noopener noreferrer"
                   className="bg-white text-black px-6 py-3 rounded font-medium text-sm hover:bg-zinc-200 transition-colors text-center"
                 >
                   Get Started with Cloud Version

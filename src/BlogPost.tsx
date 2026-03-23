@@ -82,17 +82,57 @@ function BlogPost() {
                   code: ({node, className, children, ...props}: any) => {
                     const codeText = String(children ?? '');
                     const isCodeBlock = Boolean(className && className.includes('language-')) || codeText.includes('\n');
+                    const isBash = Boolean(className && /language-(bash|shell|sh)/.test(className));
 
-                    return isCodeBlock ? (
+                    if (!isCodeBlock) {
+                      return (
+                        <code className="bg-white/10 text-white px-1.5 py-0.5 rounded text-sm font-mono" {...props}>
+                          {children}
+                        </code>
+                      );
+                    }
+
+                    if (isBash) {
+                      // Extract raw text from rehype-highlight's processed nodes
+                      const extractText = (child: any): string => {
+                        if (typeof child === 'string') return child;
+                        if (Array.isArray(child)) return child.map(extractText).join('');
+                        if (child?.props?.children) return extractText(child.props.children);
+                        return '';
+                      };
+                      const rawCode = extractText(children).replace(/\n$/, '');
+
+                      return (
+                        <code className="block overflow-x-auto text-sm leading-7 font-mono p-5" {...props}>
+                          {rawCode.split('\n').map((line, lineIdx) => {
+                            if (!line.trim()) return <div key={lineIdx} className="h-4" />;
+                            if (line.trim().startsWith('#')) {
+                              return <div key={lineIdx}><span className="text-zinc-500">{line}</span></div>;
+                            }
+                            const tokens = line.split(' ');
+                            return (
+                              <div key={lineIdx}>
+                                {tokens.map((token, tokenIdx) => {
+                                  let cls = 'text-amber-400'; // subcommand / arg default
+                                  if (tokenIdx === 0) cls = 'text-white font-medium';
+                                  else if (token.startsWith('@') || /^[a-z0-9-]+\/[a-z0-9-]+/.test(token)) cls = 'text-sky-400';
+                                  else if (token.startsWith('-')) cls = 'text-zinc-400';
+                                  return (
+                                    <span key={tokenIdx} className={cls}>
+                                      {token}{tokenIdx < tokens.length - 1 ? ' ' : ''}
+                                    </span>
+                                  );
+                                })}
+                              </div>
+                            );
+                          })}
+                        </code>
+                      );
+                    }
+
+                    return (
                       <code
                         className={`block bg-transparent text-zinc-300 px-5 py-0 overflow-x-auto text-sm leading-7 font-mono ${className || ''}`}
-                        {...props}
-                      >
-                        {children}
-                      </code>
-                    ) : (
-                      <code
-                        className="bg-white/10 text-white px-1.5 py-0.5 rounded text-sm font-mono"
                         {...props}
                       >
                         {children}
